@@ -134,7 +134,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
         <div className="wrap nav-row">
           <a href="#hero" className="brand" onClick={closeNav}>
             <Image
-              src="/logoFarbeTrans.png"
+              src="/logoFarbeTransv2.png"
               alt="DJ RAPHX Logo"
               width={240}
               height={100}
