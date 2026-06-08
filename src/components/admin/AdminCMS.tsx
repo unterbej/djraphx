@@ -53,13 +53,13 @@ const BUILT_IN_FIELDS: CmsField[] = [
 
 const GROUP_ORDER = ['Hero', 'Marquee', 'Features', 'Warum ich', 'Über mich', 'Kontakt'];
 
-const GROUP_ICONS: Record<string, string> = {
-  'Hero': '🎯',
-  'Marquee': '📢',
-  'Features': '✨',
-  'Warum ich': '💬',
-  'Über mich': '👤',
-  'Kontakt': '📞',
+const GROUP_ICONS: Record<string, React.ReactNode> = {
+  'Hero': <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>,
+  'Marquee': <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>,
+  'Features': <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>,
+  'Warum ich': <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>,
+  'Über mich': <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>,
+  'Kontakt': <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>,
 };
 
 // ── Single editable field row ──────────────────────────────────────────────
@@ -215,7 +215,7 @@ function SortableGroup({
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: group.id });
   const isOpen = openGroups.has(group.id);
   const dirtyInGroup = group.fields.filter(f => (values[f.key] ?? '') !== (original[f.key] ?? '')).length;
-  const icon = GROUP_ICONS[group.label] ?? '📄';
+  const icon = GROUP_ICONS[group.label] ?? <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>;
 
   const fieldSensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }));
 
@@ -259,7 +259,7 @@ function SortableGroup({
         </div>
 
         <div onClick={() => toggleGroup(group.id)} style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1 }}>
-          <span style={{ fontSize: '18px', lineHeight: 1 }}>{icon}</span>
+          <span style={{ color: 'rgba(255,255,255,.35)', display: 'flex', alignItems: 'center' }}>{icon}</span>
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <span style={{ fontFamily: 'var(--font-d)', fontSize: '15px', letterSpacing: '.08em', textTransform: 'uppercase' }}>
@@ -574,7 +574,7 @@ export default function AdminCMS() {
               borderRadius: '14px', padding: '14px 16px', display: 'flex', alignItems: 'center', gap: '12px',
               boxShadow: '0 16px 48px rgba(0,0,0,.5)',
             }}>
-              <span style={{ fontSize: '18px' }}>{GROUP_ICONS[activeGroup.label] ?? '📄'}</span>
+              <span style={{ color: 'rgba(255,255,255,.35)', display: 'flex', alignItems: 'center' }}>{GROUP_ICONS[activeGroup.label] ?? <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>}</span>
               <span style={{ fontFamily: 'var(--font-d)', fontSize: '15px', letterSpacing: '.08em', textTransform: 'uppercase' }}>
                 {activeGroup.label}
               </span>
