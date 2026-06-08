@@ -133,13 +133,14 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
       <nav className={`nav${navOpen ? ' open' : ''}`} ref={navRef} id="nav">
         <div className="wrap nav-row">
           <a href="#hero" className="brand" onClick={closeNav}>
-            <div className="brand-mark">
-              <svg className="brand-wave" width="32" height="28" viewBox="0 0 52 40" fill="none">
-                <path d="M2 20 C6 20 8 8 12 8 C16 8 16 32 20 32 C24 32 24 4 28 4 C32 4 32 36 36 36 C40 36 40 8 44 8 C48 8 48 20 52 20" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <div className="brand-divider" />
-            </div>
-            <span className="brand-name">DJ RAPH<span>X</span></span>
+            <Image
+              src="/logoFarbe.jpeg"
+              alt="DJ RaphX Logo"
+              width={44}
+              height={44}
+              style={{ borderRadius: '8px', objectFit: 'cover', display: 'block' }}
+              priority
+            />
           </a>
           <ul className="nav-links" id="navLinks">
             <li><a href="#about" onClick={closeNav}>Über mich</a></li>
