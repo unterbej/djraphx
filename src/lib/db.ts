@@ -75,7 +75,7 @@ export async function ensureInit(): Promise<void> {
     await db.execute({
       sql: `INSERT INTO reviews (text, author, role, sort_order) VALUES (?, ?, ?, ?)`,
       args: [
-        "Wir sind sehr zufrieden mit DJ Raphael Taxer (RAPHX)! Er ist unser DJ im Tanzlokal Senita's Treff in Feffernitz und sorgt jedes Mal fuer eine grossartige Stimmung. Die Musikauswahl ist immer hervorragend und perfekt auf unsere Gaeste abgestimmt. Wir empfehlen ihn sehr gerne weiter.",
+        "Wir sind sehr zufrieden mit DJ Raphael Taxer (RAPHX)! Er ist unser DJ im Tanzlokal Senita's Treff in Feffernitz und sorgt jedes Mal für eine großartige Stimmung. Die Musikauswahl ist immer hervorragend und perfekt auf unsere Gäste abgestimmt. Wir empfehlen ihn sehr gerne weiter.",
         'Senita Vejzovic',
         "Inhaberin des Lokals Senita's Treff in Feffernitz",
         0,
@@ -122,13 +122,13 @@ export async function ensureInit(): Promise<void> {
   const defaultContent: [string, string][] = [
     ['hero_title', 'Dein DJ für stilvolle & unvergessliche Events'],
     ['hero_subtitle', 'Professioneller DJ für Geburtstage, Firmenevents, Öffentliche Veranstaltungen und Club-Auftritte — in Kärnten und Umgebung.'],
-    ['hero_quote', '"Unvergessliche Naechte, beste Unterhaltung und volle Tanzflaechen garantiert."'],
+    ['hero_quote', '"Unvergessliche Nächte, beste Unterhaltung und volle Tanzflächen garantiert."'],
     ['hero_stats_events', '120+'],
     ['hero_stats_genres', '8'],
     ['hero_stats_available', '24/7'],
     ['about_text1', 'Musik begleitet mich bereits seit meiner Kindheit und war für mich schon immer mehr als nur Unterhaltung. Schon früh entwickelte ich eine große Leidenschaft für verschiedene Musikrichtungen und brachte mir später selbst Instrumente wie Klavier und Gitarre bei. Dabei wurde mir bewusst, welche Kraft Musik besitzt und wie sehr sie Menschen verbinden kann.'],
     ['about_text2', 'Mein beruflicher Weg führte mich zunächst in die Elektrotechnik. Mit der Zeit merkte ich jedoch, dass mich dieser Beruf allein nicht vollständig erfüllt. Im Jahr 2026 gründete ich schließlich mein Kleinunternehmen — meine Leidenschaft zum Beruf.'],
-    ['review_text', 'Wir sind sehr zufrieden mit DJ Raphael Taxer (RAPHX)! Er ist unser DJ im Tanzlokal Senita\'s Treff in Feffernitz und sorgt jedes Mal fuer eine grossartige Stimmung. Die Musikauswahl ist immer hervorragend und perfekt auf unsere Gaeste abgestimmt. Wir empfehlen ihn sehr gerne weiter.'],
+    ['review_text', 'Wir sind sehr zufrieden mit DJ Raphael Taxer (RAPHX)! Er ist unser DJ im Tanzlokal Senita\'s Treff in Feffernitz und sorgt jedes Mal für eine großartige Stimmung. Die Musikauswahl ist immer hervorragend und perfekt auf unsere Gäste abgestimmt. Wir empfehlen ihn sehr gerne weiter.'],
     ['review_author', 'Senita Vejzovic'],
     ['review_role', "Inhaberin des Lokals Senita's Treff in Feffernitz"],
     ['contact_email', 'dj.raphx@icloud.com'],
