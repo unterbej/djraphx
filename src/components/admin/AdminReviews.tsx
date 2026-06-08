@@ -9,6 +9,7 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import Image from 'next/image';
+import { IcoPlus, IcoEdit, IcoTrash, IcoSave, IcoClose, IcoImage } from './icons';
 
 interface Review {
   id: number;
@@ -62,13 +63,13 @@ function SortableReview({ review, onEdit, onDelete }: { review: Review; onEdit: 
       </div>
 
       <div style={{ display:'flex', gap:'8px', flexShrink:0 }}>
-        <button onClick={() => onEdit(review)} style={{ padding:'6px 14px',borderRadius:'8px',border:'1px solid var(--border)',color:'var(--dim)',fontSize:'12px',cursor:'pointer',background:'transparent',fontFamily:'inherit' }}
+        <button onClick={() => onEdit(review)} style={{ display:'flex',alignItems:'center',gap:'6px',padding:'6px 14px',borderRadius:'8px',border:'1px solid var(--border)',color:'var(--dim)',fontSize:'12px',cursor:'pointer',background:'transparent',fontFamily:'inherit' }}
           onMouseEnter={e => { e.currentTarget.style.borderColor='var(--border2)'; e.currentTarget.style.color='var(--text)'; }}
           onMouseLeave={e => { e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.color='var(--dim)'; }}>
-          Bearbeiten
+          <IcoEdit /> Bearbeiten
         </button>
-        <button onClick={() => onDelete(review.id)} style={{ padding:'6px 14px',borderRadius:'8px',border:'1px solid rgba(255,85,119,.2)',color:'#ff7a93',fontSize:'12px',cursor:'pointer',background:'transparent',fontFamily:'inherit' }}>
-          Löschen
+        <button onClick={() => onDelete(review.id)} style={{ display:'flex',alignItems:'center',gap:'6px',padding:'6px 14px',borderRadius:'8px',border:'1px solid rgba(255,85,119,.2)',color:'#ff7a93',fontSize:'12px',cursor:'pointer',background:'transparent',fontFamily:'inherit' }}>
+          <IcoTrash /> Löschen
         </button>
       </div>
     </div>
@@ -142,7 +143,7 @@ export default function AdminReviews() {
           <h1 style={{ fontFamily:'var(--font-d)',fontSize:'36px',letterSpacing:'.04em',textTransform:'uppercase' }}>Bewertungen</h1>
           <p style={{ color:'var(--dim)',fontSize:'13px',marginTop:'4px' }}>Ziehe Bewertungen um die Reihenfolge zu ändern.</p>
         </div>
-        <button onClick={openNew} className="btn btn-primary btn-sm" style={{ fontFamily:'inherit' }}>+ Neue Bewertung</button>
+        <button onClick={openNew} className="btn btn-primary btn-sm" style={{ fontFamily:'inherit', display:'flex', alignItems:'center', gap:'7px' }}><IcoPlus size={14} /> Neue Bewertung</button>
       </div>
 
       {loading ? (
@@ -150,7 +151,7 @@ export default function AdminReviews() {
       ) : reviews.length === 0 ? (
         <div style={{ ...card, padding:'60px', textAlign:'center' }}>
           <p style={{ color:'var(--dim)',marginBottom:'16px' }}>Noch keine Bewertungen.</p>
-          <button onClick={openNew} className="btn btn-primary btn-sm" style={{ fontFamily:'inherit' }}>Erste Bewertung erstellen</button>
+          <button onClick={openNew} className="btn btn-primary btn-sm" style={{ fontFamily:'inherit', display:'flex', alignItems:'center', gap:'7px', margin:'0 auto' }}><IcoPlus size={14} /> Erste Bewertung erstellen</button>
         </div>
       ) : (
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
@@ -168,7 +169,7 @@ export default function AdminReviews() {
       {editing !== null && (
         <div style={{ position:'fixed',inset:0,background:'rgba(5,6,13,.92)',zIndex:200,display:'flex',alignItems:'flex-start',justifyContent:'center',overflowY:'auto',padding:'40px 16px' }} onClick={e => { if (e.target === e.currentTarget) closeEdit(); }}>
           <div style={{ background:'var(--bg1)',border:'1px solid var(--border)',borderRadius:'var(--rl)',maxWidth:'560px',width:'100%',padding:'36px',position:'relative',margin:'auto' }}>
-            <button onClick={closeEdit} style={{ position:'absolute',top:'16px',right:'16px',width:'36px',height:'36px',borderRadius:'50%',border:'1px solid rgba(255,255,255,.1)',background:'rgba(255,255,255,.04)',color:'var(--text)',fontSize:'18px',display:'grid',placeItems:'center',cursor:'pointer',fontFamily:'inherit' }}>✕</button>
+            <button onClick={closeEdit} style={{ position:'absolute',top:'16px',right:'16px',width:'36px',height:'36px',borderRadius:'50%',border:'1px solid rgba(255,255,255,.1)',background:'rgba(255,255,255,.04)',color:'var(--text)',display:'grid',placeItems:'center',cursor:'pointer',fontFamily:'inherit' }}><IcoClose /></button>
 
             <h2 style={{ fontFamily:'var(--font-d)',fontSize:'28px',letterSpacing:'.04em',textTransform:'uppercase',marginBottom:'24px' }}>
               {editId === null ? 'Neue Bewertung' : 'Bewertung bearbeiten'}
@@ -212,9 +213,11 @@ export default function AdminReviews() {
               {err && <p style={{ color:'#ff7a93',fontSize:'13px' }}>{err}</p>}
 
               <div style={{ display:'flex',gap:'12px',justifyContent:'flex-end',marginTop:'4px' }}>
-                <button onClick={closeEdit} style={{ padding:'10px 20px',borderRadius:'999px',border:'1px solid var(--border)',color:'var(--dim)',fontSize:'12px',cursor:'pointer',background:'transparent',fontFamily:'inherit' }}>Abbrechen</button>
-                <button onClick={saveEdit} disabled={saving} className="btn btn-primary btn-sm" style={{ fontFamily:'inherit' }}>
-                  {saving ? 'Speichern …' : (editId === null ? 'Hinzufügen' : 'Speichern')}
+                <button onClick={closeEdit} style={{ display:'flex',alignItems:'center',gap:'6px',padding:'10px 18px',borderRadius:'8px',border:'1px solid var(--border)',color:'var(--dim)',fontSize:'12px',cursor:'pointer',background:'transparent',fontFamily:'inherit' }}>
+                  <IcoClose size={13} /> Abbrechen
+                </button>
+                <button onClick={saveEdit} disabled={saving} className="btn btn-primary btn-sm" style={{ display:'flex',alignItems:'center',gap:'7px',fontFamily:'inherit' }}>
+                  <IcoSave size={13} /> {saving ? 'Speichern …' : (editId === null ? 'Hinzufügen' : 'Speichern')}
                 </button>
               </div>
             </div>

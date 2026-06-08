@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { IcoClose, IcoTrash, IcoSave } from './icons';
 
 interface Booking {
   id: number;
@@ -181,7 +182,7 @@ export default function AdminBookings() {
       {selected && (
         <div style={{position:'fixed',inset:0,background:'rgba(5,6,13,.92)',zIndex:200,display:'flex',alignItems:'flex-start',justifyContent:'center',overflowY:'auto',padding:'40px 16px'}} onClick={e => { if (e.target === e.currentTarget) setSelected(null); }}>
           <div style={{background:'var(--bg1)',border:'1px solid var(--border)',borderRadius:'var(--rl)',maxWidth:'600px',width:'100%',padding:'36px',position:'relative',margin:'auto'}}>
-            <button onClick={() => setSelected(null)} style={{position:'absolute',top:'16px',right:'16px',width:'36px',height:'36px',borderRadius:'50%',border:'1px solid rgba(255,255,255,.1)',background:'rgba(255,255,255,.04)',color:'var(--text)',fontSize:'18px',display:'grid',placeItems:'center',cursor:'pointer',fontFamily:'inherit'}}>✕</button>
+            <button onClick={() => setSelected(null)} style={{position:'absolute',top:'16px',right:'16px',width:'36px',height:'36px',borderRadius:'50%',border:'1px solid rgba(255,255,255,.1)',background:'rgba(255,255,255,.04)',color:'var(--text)',display:'grid',placeItems:'center',cursor:'pointer',fontFamily:'inherit'}}><IcoClose /></button>
             <h2 style={{fontFamily:'var(--font-d)',fontSize:'28px',letterSpacing:'.04em',textTransform:'uppercase',marginBottom:'20px'}}>Buchung #{selected.id}</h2>
 
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px',marginBottom:'20px'}}>
@@ -225,11 +226,11 @@ export default function AdminBookings() {
             </div>
 
             <div style={{display:'flex',gap:'12px',justifyContent:'flex-end'}}>
-              <button onClick={() => deleteBooking(selected.id)} style={{padding:'10px 20px',borderRadius:'999px',border:'1px solid rgba(255,85,119,.3)',background:'rgba(255,85,119,.08)',color:'#ff7a93',fontSize:'12px',cursor:'pointer',fontFamily:'inherit',letterSpacing:'.08em',textTransform:'uppercase'}}>
-                Löschen
+              <button onClick={() => deleteBooking(selected.id)} style={{display:'flex',alignItems:'center',gap:'7px',padding:'10px 18px',borderRadius:'8px',border:'1px solid rgba(255,85,119,.3)',background:'rgba(255,85,119,.08)',color:'#ff7a93',fontSize:'12px',cursor:'pointer',fontFamily:'inherit',letterSpacing:'.08em',textTransform:'uppercase'}}>
+                <IcoTrash /> Löschen
               </button>
-              <button onClick={saveBooking} className="btn btn-primary btn-sm" disabled={saving} style={{fontFamily:'inherit'}}>
-                {saving ? 'Speichern …' : 'Speichern'}
+              <button onClick={saveBooking} className="btn btn-primary btn-sm" disabled={saving} style={{display:'flex',alignItems:'center',gap:'7px',fontFamily:'inherit'}}>
+                <IcoSave size={13} /> {saving ? 'Speichern …' : 'Speichern'}
               </button>
             </div>
           </div>
