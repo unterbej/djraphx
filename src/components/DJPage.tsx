@@ -134,11 +134,11 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
         <div className="wrap nav-row">
           <a href="#hero" className="brand" onClick={closeNav}>
             <Image
-              src="/logoFarbe.jpeg"
+              src="/logoFarbeTrans.png"
               alt="DJ RaphX Logo"
               width={120}
               height={50}
-              style={{ objectFit: 'contain', display: 'block', mixBlendMode: 'screen' }}
+              style={{ objectFit: 'contain', display: 'block' }}
               priority
             />
           </a>
