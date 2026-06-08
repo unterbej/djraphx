@@ -59,7 +59,7 @@ export default function BookingForm() {
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l4 4L19 6"/></svg>
           </div>
           <h3 style={{fontFamily:'var(--font-d)',fontSize:'32px',letterSpacing:'.04em',textTransform:'uppercase',marginBottom:'8px'}}>Anfrage gesendet!</h3>
-          <p style={{color:'var(--dim)',fontSize:'15px'}}>Danke! DJ RaphX meldet sich innerhalb von 24 Stunden persönlich zurück.</p>
+          <p style={{color:'var(--dim)',fontSize:'15px'}}>Danke! DJ RAPHX meldet sich innerhalb von 24 Stunden persönlich zurück.</p>
         </div>
       </div>
     );

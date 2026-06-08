@@ -135,9 +135,9 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
           <a href="#hero" className="brand" onClick={closeNav}>
             <Image
               src="/logoFarbeTrans.png"
-              alt="DJ RaphX Logo"
-              width={120}
-              height={50}
+              alt="DJ RAPHX Logo"
+              width={240}
+              height={100}
               style={{ objectFit: 'contain', display: 'block' }}
               priority
             />
@@ -188,9 +188,9 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
             <div className="hero-frame reveal">
               <div className="hero-frame-glow" />
               <div className="hero-frame-img">
-                <Image src="/portrait1.jpeg" alt="DJ RaphX am Pult" fill style={{objectFit:'cover',objectPosition:'center top'}} priority />
+                <Image src="/portrait1.jpeg" alt="DJ RAPHX am Pult" fill style={{objectFit:'cover',objectPosition:'center top'}} priority />
               </div>
-              <div className="hero-frame-badge">DJ RaphX · Kärnten</div>
+              <div className="hero-frame-badge">DJ RAPHX · Kärnten</div>
             </div>
           </div>
         </div>
@@ -206,9 +206,9 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
       <section id="features">
         <div className="wrap">
           <div className="sec-head reveal">
-            <span className="eyebrow">Das zeichnet DJ RaphX aus</span>
-            <h2 className="sec-title">Warum <span className="grad-text">RaphX</span>?</h2>
-            <p className="sec-lead">Drei Punkte, die DJ RaphX von einer einfachen Playlist unterscheiden.</p>
+            <span className="eyebrow">Das zeichnet DJ RAPHX aus</span>
+            <h2 className="sec-title">Warum <span className="grad-text">RAPHX</span>?</h2>
+            <p className="sec-lead">Drei Punkte, die DJ RAPHX von einer einfachen Playlist unterscheiden.</p>
           </div>
           <div className="features-grid">
             <div className="feat-card reveal">
@@ -326,8 +326,8 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
         <div className="wrap">
           <div className="about-grid">
             <div className="about-img reveal">
-              <Image src="/portrait3.jpeg" alt="DJ Raphael Taxer – RaphX" fill style={{objectFit:'cover',objectPosition:'center top'}} />
-              <span className="about-tag">RaphX · 2026</span>
+              <Image src="/portrait3.jpeg" alt="DJ Raphael Taxer – RAPHX" fill style={{objectFit:'cover',objectPosition:'center top'}} />
+              <span className="about-tag">RAPHX · 2026</span>
             </div>
             <div className="about-body reveal">
               <span className="eyebrow">Über mich</span>
@@ -586,7 +586,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
       {/* FOOTER */}
       <footer>
         <div className="wrap foot-row">
-          <div className="foot-copy">© {new Date().getFullYear()} DJ RaphX · Raphael Taxer · Feffernitz, Kärnten, Österreich</div>
+          <div className="foot-copy">© {new Date().getFullYear()} DJ RAPHX · Raphael Taxer · Feffernitz, Kärnten, Österreich</div>
           <ul className="foot-links">
             <li><a onClick={() => setActiveModal('agb')}>AGB</a></li>
             <li><a onClick={() => setActiveModal('dsgvo')}>Datenschutz</a></li>
@@ -603,9 +603,9 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
             {activeModal === 'agb' && (
               <>
                 <h2>AGB</h2>
-                <p>Allgemeine Geschäftsbedingungen für DJ-Dienstleistungen von Raphael Taxer (DJ RaphX).</p>
+                <p>Allgemeine Geschäftsbedingungen für DJ-Dienstleistungen von Raphael Taxer (DJ RAPHX).</p>
                 <h3>1. Geltungsbereich</h3>
-                <p>Diese allgemeinen Geschäftsbedingungen gelten für alle Vereinbarungen zwischen Dienstleister DJ RaphX und Auftraggebern im Bereich musikalischer Gestaltung.</p>
+                <p>Diese allgemeinen Geschäftsbedingungen gelten für alle Vereinbarungen zwischen Dienstleister DJ RAPHX und Auftraggebern im Bereich musikalischer Gestaltung.</p>
                 <h3>2. Vertragsabschluss</h3>
                 <p>Ein Vertrag kommt durch die schriftliche Bestätigung zwischen den Auftraggebern und dem Dienstleister zustande.</p>
                 <h3>3. Preise und Zahlung</h3>
@@ -641,7 +641,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
               <>
                 <h2>Impressum</h2>
                 <h3>Angaben gemäß § 5 ECG</h3>
-                <p><strong>DJ RaphX</strong><br/>Raphael Taxer<br/>Lina-Domenig Straße 118<br/>9710 Feffernitz, Österreich</p>
+                <p><strong>DJ RAPHX</strong><br/>Raphael Taxer<br/>Lina-Domenig Straße 118<br/>9710 Feffernitz, Österreich</p>
                 <h3>Kontakt</h3>
                 <p>E-Mail: dj.raphx@icloud.com<br/>Tel: +43 660 5459207</p>
                 <h3>Unternehmensgegenstand</h3>
