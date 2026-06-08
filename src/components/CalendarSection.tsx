@@ -10,10 +10,19 @@ function pad(n: number) { return String(n).padStart(2, '0'); }
 export default function CalendarSection() {
   const [events, setEvents] = useState<Record<string, string>>({});
   const [cur, setCur] = useState(new Date(2026, 2, 1));
+  const [activeKey, setActiveKey] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/calendar').then(r => r.json()).then(setEvents).catch(() => {});
   }, []);
+
+  // Close tooltip when tapping outside
+  useEffect(() => {
+    if (!activeKey) return;
+    const close = () => setActiveKey(null);
+    document.addEventListener('touchstart', close, { passive: true });
+    return () => document.removeEventListener('touchstart', close);
+  }, [activeKey]);
 
   const y = cur.getFullYear();
   const m = cur.getMonth();
@@ -34,10 +43,20 @@ export default function CalendarSection() {
     const key = `${y}-${pad(m + 1)}-${pad(d)}`;
     const ev = events[key];
     const isToday = today.getFullYear() === y && today.getMonth() === m && today.getDate() === d;
+    const isActive = activeKey === key;
     cells.push(
-      <div key={key} className={`cal-day${ev ? ' has-event' : ''}${isToday ? ' today' : ''}`}>
+      <div
+        key={key}
+        className={`cal-day${ev ? ' has-event' : ''}${isToday ? ' today' : ''}`}
+        onTouchStart={ev ? e => { e.stopPropagation(); setActiveKey(isActive ? null : key); } : undefined}
+      >
         <span className="cal-day-num">{d}</span>
-        {ev && <><div className="cal-dot" /><div className="cal-tooltip">{ev}</div></>}
+        {ev && (
+          <>
+            <div className="cal-dot" />
+            <div className={`cal-tooltip${isActive ? ' touch-active' : ''}`}>{ev}</div>
+          </>
+        )}
       </div>
     );
   }
