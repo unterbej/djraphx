@@ -136,9 +136,9 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
             <Image
               src="/logoFarbe.jpeg"
               alt="DJ RaphX Logo"
-              width={44}
-              height={44}
-              style={{ borderRadius: '8px', objectFit: 'cover', display: 'block' }}
+              width={120}
+              height={50}
+              style={{ objectFit: 'contain', display: 'block', mixBlendMode: 'screen' }}
               priority
             />
           </a>
