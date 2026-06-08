@@ -63,11 +63,6 @@ export default function ReviewSlider() {
           </div>
         )}
 
-        {!r.image_url && (
-          <div className="review-avatar-placeholder">
-            <span>{r.author.charAt(0).toUpperCase()}</span>
-          </div>
-        )}
 
         <p className="review-text">{r.text}</p>
         <div className="review-author">{r.author}</div>
