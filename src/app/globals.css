@@ -295,8 +295,8 @@ footer { padding: 44px 0 36px; border-top: 1px solid rgba(255,255,255,.05); posi
 @media(max-width:920px) {
   .about-grid, .contact-grid, .adv-grid, .process-steps { grid-template-columns: 1fr; gap: 32px; }
   .process-steps::before { display: none; }
-  .hero-layout { grid-template-columns: 1fr; gap: 48px; }
-  .hero-frame { max-width: 340px; margin: 0 auto; }
+  .hero-layout { grid-template-columns: 1fr; gap: 32px; }
+  .hero-frame { max-width: 260px; margin: 0 auto; order: -1; }
   .hero-inner { text-align: center; }
   .hero-ctas { justify-content: center; }
   .hero-stats { justify-content: center; }
@@ -310,7 +310,7 @@ footer { padding: 44px 0 36px; border-top: 1px solid rgba(255,255,255,.05); posi
   .pkg-grid { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .hero-stats { gap: 20px; }
-  .hero-frame { max-width: 280px; }
+  .hero-frame { max-width: 220px; }
   section { padding: 72px 0; }
   .hero { padding: 100px 0 60px; }
   .brand-name { font-size: 20px; }
