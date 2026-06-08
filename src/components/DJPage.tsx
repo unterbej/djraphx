@@ -33,7 +33,11 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
       { threshold: 0.1 }
     );
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    // Fallback: show all remaining hidden elements after 1.5s
+    const t = setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.in)').forEach((el) => el.classList.add('in'));
+    }, 1500);
+    return () => { io.disconnect(); clearTimeout(t); };
   }, []);
 
   useEffect(() => {
@@ -185,7 +189,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
                 <div><div className="stat-num">{c('hero_stats_available', '24/7')}</div><div className="stat-lbl">Erreichbar</div></div>
               </div>
             </div>
-            <div className="hero-frame reveal">
+            <div className="hero-frame">
               <div className="hero-frame-glow" />
               <div className="hero-frame-img">
                 <Image src="/portrait1.jpeg" alt="DJ RAPHX am Pult" fill style={{objectFit:'cover',objectPosition:'center top'}} priority />

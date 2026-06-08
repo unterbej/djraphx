@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     localPatterns: [{ pathname: '/**' }],
   },
   serverExternalPackages: ['bcryptjs', '@libsql/client'],
+  allowedDevOrigins: ['unterbej.at'],
 };
 
 export default nextConfig;
