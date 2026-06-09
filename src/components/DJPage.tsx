@@ -21,6 +21,8 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
   useEffect(() => {
     const handleScroll = () => {
       navRef.current?.classList.toggle('scrolled', window.scrollY > 14);
+      const hint = document.querySelector('.scroll-hint') as HTMLElement | null;
+      if (hint) hint.style.opacity = window.scrollY > 60 ? '0' : '1';
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
@@ -135,7 +137,6 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
             <li><a href="#pakete" onClick={closeNav}>Pakete</a></li>
             <li><a href="#kontakt" onClick={closeNav}>Kontakt</a></li>
           </ul>
-          <a href="#kontakt" className="btn btn-primary nav-cta btn-sm" onClick={closeNav}>Jetzt buchen <span className="arrow">→</span></a>
           <button className={`burger${navOpen ? ' open' : ''}`} ref={burgerRef} onClick={toggleNav} aria-label="Menü" aria-expanded={navOpen}>
             <span /><span /><span />
           </button>
@@ -166,7 +167,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
                 </a>
               </div>
               <div className="hero-stats reveal">
-                <div><div className="stat-num">{c('hero_stats_events', '120+')}</div><div className="stat-lbl">Gespielte Events</div></div>
+                <div><div className="stat-num">{c('hero_stats_events', '120+')}</div><div className="stat-lbl">Remixed Tracks</div></div>
                 <div><div className="stat-num">{c('hero_stats_genres', '8')}</div><div className="stat-lbl">Genres</div></div>
                 <div><div className="stat-num">{c('hero_stats_available', '24/7')}</div><div className="stat-lbl">Erreichbar</div></div>
               </div>
@@ -508,14 +509,16 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
           </div>
           <div className="partners-grid">
             {[
-              { href:'https://www.melaniemaurerfotografie.at', name:'Melanie Maurer', role:'Business & Familienfotografin', icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> },
-              { href:'https://www.dobesch.at', name:'Dobesch Showtechnik + Event', role:'Veranstaltungstechniker & Eventplaner', icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> },
-              { href:'https://www.linktr.ee/UnderlinedBrass', name:'Underlinebrass', role:'Blasmusik Band', icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> },
-              { href:'https://www.dein-finanzcoach.at', name:'Dein Finanzcoach', role:'Versicherungspartner', icon:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> },
+              { href:'https://www.melaniemaurerfotografie.at', name:'Melanie Maurer', role:'Business & Familienfotografin', logo:'/logos/MelanieMaurer.jpeg', cover: true },
+              { href:'https://www.dobesch.at', name:'Dobesch Showtechnik', role:'Veranstaltungstechniker & Eventplaner', logo:'/logos/logo_dobesch_showtechnik.png', cover: false },
+              { href:'https://www.linktr.ee/UnderlinedBrass', name:'Underlined Brass', role:'Blasmusik Band', logo:'/logos/logo_underlinedbrass-removebg-preview.png', cover: false },
+              { href:'https://www.dein-finanzcoach.at', name:'Dein Finanzcoach', role:'Versicherungspartner', logo:'/logos/Logo_finanzCouch.png', cover: false },
             ].map((p, i) => (
               <a key={i} className="partner-card reveal" href={p.href} target="_blank" rel="noopener">
-                <div className="partner-ico">{p.icon}</div>
-                <div>
+                <div className={p.cover ? 'partner-logo-wrap partner-logo-cover' : 'partner-logo-wrap'}>
+                  <Image src={p.logo} alt={p.name} fill style={{objectFit: p.cover ? 'cover' : 'contain'}} sizes="300px" />
+                </div>
+                <div className="partner-info">
                   <div className="partner-name">{p.name}</div>
                   <div className="partner-role">{p.role}</div>
                 </div>

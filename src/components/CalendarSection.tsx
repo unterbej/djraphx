@@ -9,7 +9,7 @@ function pad(n: number) { return String(n).padStart(2, '0'); }
 
 export default function CalendarSection() {
   const [events, setEvents] = useState<Record<string, string>>({});
-  const [cur, setCur] = useState(new Date(2026, 2, 1));
+  const [cur, setCur] = useState(() => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), 1); });
   const [activeKey, setActiveKey] = useState<string | null>(null);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function CalendarSection() {
     <section id="kalender">
       <div className="wrap">
         <div className="sec-head reveal">
-          <span className="eyebrow">Veranstaltungskalender 2026</span>
+          <span className="eyebrow">Veranstaltungskalender {new Date().getFullYear()}</span>
           <h2 className="sec-title">Wann bin ich <span className="grad-text">verfügbar?</span></h2>
           <p className="sec-lead">Tage mit einem Punkt sind bereits ausgebucht. Sichere dir deinen Wunschtermin rechtzeitig.</p>
         </div>
