@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     description: "Professioneller DJ aus Kärnten für Events, Hochzeiten & Club-Auftritte.",
     images: ["/og-image.jpg"],
   },
+  verification: {
+    google: "-GhOAIZFnuJ8eaM9vPNWrURy0uGJg4uExtALtpXYKm4",
+  },
   robots: {
     index: true,
     follow: true,
