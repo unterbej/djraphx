@@ -45,24 +45,6 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
     else document.body.style.overflow = '';
   }, [activeModal]);
 
-  useEffect(() => {
-    const el = document.getElementById('marquee');
-    if (!el) return;
-    const orig = el.textContent || '';
-    el.textContent = orig + orig + orig;
-    let x = 0;
-    const speed = 0.4;
-    const w = el.scrollWidth / 3;
-    let rAF: number;
-    function tick() {
-      x -= speed;
-      if (Math.abs(x) >= w) x = 0;
-      el!.style.transform = `translateX(${x}px)`;
-      rAF = requestAnimationFrame(tick);
-    }
-    if (!window.matchMedia('(prefers-reduced-motion:reduce)').matches) tick();
-    return () => cancelAnimationFrame(rAF);
-  }, [cms]);
 
   // Hero canvas
   useEffect(() => {
@@ -202,8 +184,14 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
       </header>
 
       {/* MARQUEE */}
-      <div className="quote-strip" aria-hidden="true" id="marquee">
-        {c('marquee_text', 'Feiern beginnt mit der richtigen Musik · Erinnerungen fürs Leben · Emotionen, die bleiben ·')}&nbsp;
+      <div className="quote-strip" aria-hidden="true">
+        <div className="quote-track">
+          {[0, 1].map(i => (
+            <span key={i} className="quote-copy" aria-hidden={i > 0 ? 'true' : undefined}>
+              {c('marquee_text', 'Feiern beginnt mit der richtigen Musik · Erinnerungen fürs Leben · Emotionen, die bleiben ·')}&nbsp;
+            </span>
+          ))}
+        </div>
       </div>
 
       {/* FEATURES */}
