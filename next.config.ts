@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   images: {
     localPatterns: [{ pathname: '/**' }],
   },
-  serverExternalPackages: ['bcryptjs', '@libsql/client'],
+  serverExternalPackages: ['bcryptjs', '@libsql/client', 'sharp'],
   allowedDevOrigins: ['unterbej.at'],
 };
 

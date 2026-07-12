@@ -6,8 +6,9 @@ import AdminBookings from './AdminBookings';
 import AdminCalendar from './AdminCalendar';
 import AdminCMS from './AdminCMS';
 import AdminReviews from './AdminReviews';
+import AdminGallery from './AdminGallery';
 
-type Tab = 'bookings' | 'calendar' | 'reviews' | 'cms';
+type Tab = 'bookings' | 'calendar' | 'reviews' | 'gallery' | 'cms';
 
 const IconBookings = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -31,6 +32,14 @@ const IconCalendar = () => (
 const IconReviews = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+  </svg>
+);
+
+const IconGallery = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="3" width="18" height="18" rx="2"/>
+    <circle cx="8.5" cy="8.5" r="1.5"/>
+    <polyline points="21 15 16 10 5 21"/>
   </svg>
 );
 
@@ -61,6 +70,7 @@ const tabs: { id: Tab; label: string; Icon: React.FC }[] = [
   { id: 'bookings', label: 'Buchungen', Icon: IconBookings },
   { id: 'calendar', label: 'Kalender',  Icon: IconCalendar },
   { id: 'reviews',  label: 'Bewertungen', Icon: IconReviews },
+  { id: 'gallery',  label: 'Galerie',   Icon: IconGallery },
   { id: 'cms',      label: 'Inhalte',   Icon: IconCMS },
 ];
 
@@ -158,6 +168,7 @@ export default function AdminDashboard() {
         {tab === 'bookings' && <AdminBookings />}
         {tab === 'calendar' && <AdminCalendar />}
         {tab === 'reviews'  && <AdminReviews />}
+        {tab === 'gallery'  && <AdminGallery />}
         {tab === 'cms'      && <AdminCMS />}
       </main>
     </div>

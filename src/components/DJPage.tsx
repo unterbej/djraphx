@@ -5,6 +5,7 @@ import Image from 'next/image';
 import BookingForm from './BookingForm';
 import CalendarSection from './CalendarSection';
 import ReviewSlider from './ReviewSlider';
+import GallerySlider from './GallerySlider';
 
 interface CmsContent {
   [key: string]: string;
@@ -134,6 +135,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
             <li><a href="#about" onClick={closeNav}>Über mich</a></li>
             <li><a href="#services" onClick={closeNav}>Services</a></li>
             <li><a href="#kalender" onClick={closeNav}>Events</a></li>
+            <li><a href="#galerie" onClick={closeNav}>Galerie</a></li>
             <li><a href="#pakete" onClick={closeNav}>Pakete</a></li>
             <li><a href="#kontakt" onClick={closeNav}>Kontakt</a></li>
           </ul>
@@ -175,7 +177,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
             <div className="hero-frame">
               <div className="hero-frame-glow" />
               <div className="hero-frame-img">
-                <Image src="/portrait1.jpeg" alt="DJ RAPHX am Pult" fill style={{objectFit:'cover',objectPosition:'center top'}} priority />
+                <Image src="/portrait-hero.jpg" alt="DJ RAPHX mit Kopfhörern" fill style={{objectFit:'cover',objectPosition:'center top'}} priority />
               </div>
               <div className="hero-frame-badge">DJ RAPHX · Kärnten</div>
             </div>
@@ -319,7 +321,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
         <div className="wrap">
           <div className="about-grid">
             <div className="about-img reveal">
-              <Image src="/portrait3.jpeg" alt="DJ Raphael Taxer – RAPHX" fill style={{objectFit:'cover',objectPosition:'center top'}} />
+              <Image src="/portrait-about.jpg" alt="DJ Raphael Taxer – RAPHX" fill style={{objectFit:'cover',objectPosition:'center top'}} />
               <span className="about-tag">RAPHX · 2026</span>
             </div>
             <div className="about-body reveal">
@@ -498,6 +500,9 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
           </div>
         </div>
       </section>
+
+      {/* GALLERY */}
+      <GallerySlider />
 
       {/* PARTNERS */}
       <section id="partner">
