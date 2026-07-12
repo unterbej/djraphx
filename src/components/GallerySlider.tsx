@@ -72,7 +72,10 @@ export default function GallerySlider() {
           {items.map((item, i) => (
             <figure className="gal-slide" key={item.id}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="gal-bg" src={item.url} alt="" aria-hidden="true" loading={i === 0 ? 'eager' : 'lazy'} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
+                className="gal-img"
                 src={item.url}
                 alt={item.caption || `Event-Foto ${i + 1}`}
                 loading={i === 0 ? 'eager' : 'lazy'}
@@ -139,10 +142,21 @@ export default function GallerySlider() {
           margin: 0;
           height: 100%;
         }
-        .gal-slide img {
+        .gal-slide .gal-bg {
+          position: absolute;
+          inset: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
+          filter: blur(28px) brightness(.45) saturate(1.1);
+          transform: scale(1.15);
+          pointer-events: none;
+        }
+        .gal-slide .gal-img {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
           display: block;
           cursor: zoom-in;
         }
