@@ -64,8 +64,16 @@ export async function ensureInit(): Promise<void> {
     filename TEXT NOT NULL,
     caption TEXT DEFAULT '',
     sort_order INTEGER DEFAULT 0,
-    created_at TEXT DEFAULT (datetime('now'))
+    created_at TEXT DEFAULT (datetime('now')),
+    data BLOB
   )`);
+
+  // Migration for tables created before the blob column existed
+  try {
+    await db.execute(`ALTER TABLE gallery ADD COLUMN data BLOB`);
+  } catch {
+    // column already exists
+  }
 
   await db.execute(`CREATE TABLE IF NOT EXISTS reviews (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -163,7 +171,7 @@ export async function ensureInit(): Promise<void> {
   }
 }
 
-export async function dbRun(sql: string, args: (string | number | null)[] = []): Promise<{ lastInsertRowid: number | bigint; rowsAffected: number }> {
+export async function dbRun(sql: string, args: (string | number | null | Uint8Array)[] = []): Promise<{ lastInsertRowid: number | bigint; rowsAffected: number }> {
   await ensureInit();
   const result = await getDb().execute({ sql, args });
   return { lastInsertRowid: result.lastInsertRowid ?? 0, rowsAffected: result.rowsAffected };

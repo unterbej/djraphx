@@ -112,18 +112,41 @@ export default function AdminGallery() {
 
   useEffect(() => { load(); }, []);
 
+  // Downscale in the browser so each request stays well under Vercel's ~4.5 MB body limit.
+  const compress = async (file: File): Promise<Blob> => {
+    try {
+      const bitmap = await createImageBitmap(file);
+      const scale = Math.min(1, 2000 / Math.max(bitmap.width, bitmap.height));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(bitmap.width * scale);
+      canvas.height = Math.round(bitmap.height * scale);
+      canvas.getContext('2d')!.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      bitmap.close();
+      const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.88));
+      if (blob && blob.size < file.size) return blob;
+    } catch {
+      // e.g. HEIC the browser can't decode — send original and let the server try
+    }
+    return file;
+  };
+
   const upload = async (files: FileList | File[]) => {
     const list = Array.from(files).filter(f => f.type.startsWith('image/'));
     if (list.length === 0) { setErr('Bitte nur Bilddateien auswählen.'); return; }
     setUploading(true);
     setErr('');
-    const fd = new FormData();
-    list.forEach(f => fd.append('files', f));
-    const res = await fetch('/api/admin/gallery', { method: 'POST', body: fd });
-    if (!res.ok) {
-      const data = await res.json().catch(() => ({}));
-      setErr(data.error || 'Upload fehlgeschlagen.');
+    const errors: string[] = [];
+    for (const f of list) {
+      const blob = await compress(f);
+      const fd = new FormData();
+      fd.append('files', blob, f.name.replace(/\.[^.]+$/, '') + (blob === f ? '' : '.jpg'));
+      const res = await fetch('/api/admin/gallery', { method: 'POST', body: fd });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        errors.push(data.error || `Upload von "${f.name}" fehlgeschlagen.`);
+      }
     }
+    if (errors.length) setErr(errors.join(' '));
     setUploading(false);
     load();
   };

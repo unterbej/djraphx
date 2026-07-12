@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
 import sharp from 'sharp';
 import crypto from 'crypto';
 import { isAdminAuthenticated } from '@/lib/auth';
-import { dbAll, dbGet, dbRun } from '@/lib/db';
-import { getUploadsDir } from '@/lib/uploads';
+import { dbAll, dbRun } from '@/lib/db';
 
 const MAX_FILE_BYTES = 20 * 1024 * 1024;
 
@@ -25,7 +22,6 @@ export async function POST(req: NextRequest) {
   const caption = (formData.get('caption') as string) || '';
   if (files.length === 0) return NextResponse.json({ error: 'Keine Dateien erhalten' }, { status: 400 });
 
-  const dir = getUploadsDir();
   const created: { id: number; filename: string }[] = [];
 
   for (const file of files) {
@@ -48,11 +44,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: `"${file.name}" konnte nicht verarbeitet werden.` }, { status: 400 });
     }
 
+    // Image bytes live in the database — the deployment filesystem (Vercel) is read-only.
     const filename = `g_${Date.now()}_${crypto.randomBytes(4).toString('hex')}.webp`;
-    await fs.writeFile(path.join(dir, filename), processed);
     const result = await dbRun(
-      `INSERT INTO gallery (filename, caption, sort_order) VALUES (?, ?, (SELECT COALESCE(MAX(sort_order)+1,0) FROM gallery))`,
-      [filename, caption]
+      `INSERT INTO gallery (filename, caption, sort_order, data) VALUES (?, ?, (SELECT COALESCE(MAX(sort_order)+1,0) FROM gallery), ?)`,
+      [filename, caption, new Uint8Array(processed)]
     );
     created.push({ id: Number(result.lastInsertRowid), filename });
   }
@@ -72,10 +68,6 @@ export async function DELETE(req: NextRequest) {
   if (!(await isAdminAuthenticated())) return NextResponse.json({ error: 'Nicht autorisiert' }, { status: 401 });
   const { id } = await req.json();
   if (!id) return NextResponse.json({ error: 'ID erforderlich' }, { status: 400 });
-  const row = await dbGet<{ filename: string }>(`SELECT filename FROM gallery WHERE id=?`, [id]);
   await dbRun(`DELETE FROM gallery WHERE id=?`, [id]);
-  if (row?.filename) {
-    await fs.unlink(path.join(getUploadsDir(), path.basename(row.filename))).catch(() => {});
-  }
   return NextResponse.json({ success: true });
 }
