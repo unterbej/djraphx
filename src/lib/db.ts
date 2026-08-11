@@ -248,8 +248,28 @@ export async function ensureInit(): Promise<void> {
     });
   }
 
-  // One-time fixup: pricing-cards was seeded at sort_order 0 before hero/marquee/feature-grid existed.
-  await db.execute(`UPDATE blocks SET sort_order = 3 WHERE page = 'home' AND type = 'pricing-cards' AND sort_order = 0`);
+  const existingServices = await db.execute(`SELECT COUNT(*) as cnt FROM blocks WHERE page = 'home' AND type = 'service-cards'`);
+  if ((existingServices.rows[0][0] as number) === 0) {
+    const serviceConfig = {
+      eyebrow: 'Services',
+      title: { prefix: 'Ich bin Dein DJ für', highlight: 'Dein Event', suffix: '' },
+      lead: 'Vom Geburtstag über Firmenevents bis zur Clubnacht: Ich sorge mit individuell abgestimmten Sets für die Musik, die zu deinem Event und deinen Gästen passt.',
+      items: [
+        { categoryLabel: 'Hochzeiten', artVariant: 'wedding', title: 'Hochzeiten', body: 'Eure Hochzeit verdient den richtigen Sound für jeden Moment. Vom stilvollen Empfang über den Hochzeitstanz bis zur ausgelassenen Party begleite ich euren besonderen Tag musikalisch mit viel Gespür für Stimmung, Gäste und den perfekten Zeitpunkt für den nächsten Song.' },
+        { categoryLabel: 'Firmenevents', artVariant: 'event', title: 'Firmenevents', body: 'Die richtige Musik macht den Unterschied. Mit Gefühl für Rhythmus, einem Gespür für Menschen und der Fähigkeit, die Stimmung zu lesen, entsteht eine Atmosphäre, die zu eurem Event passt. Professionell, flexibel und immer abgestimmt auf Anlass und Publikum.' },
+        { categoryLabel: 'Geburtstage', artVariant: 'bday', title: 'Geburtstage & private Feiern', body: 'Bei Geburtstagen und privaten Feiern sorge ich als DJ für die passende Stimmung. Vom entspannten Start bis zur vollen Tanzfläche. Mit aktuellen Charts, zeitlosen Klassikern und mitreißenden Partyhits entsteht ein Musikmix, der zu deinen Gästen und deinem Anlass passt.' },
+        { categoryLabel: 'Öffentliche Events', artVariant: 'public', title: 'Öffentliche Veranstaltungen', body: 'Ob Stadtfest, Vereinsfeier, Ball oder öffentliche Veranstaltung — die Musik entscheidet mit über die Stimmung. Mit einem vielseitigen Mix, sicherem Gespür für das Publikum und der passenden Energie begleite ich Veranstaltungen jeder Größe und bringe Menschen auf die Tanzfläche.' },
+        { categoryLabel: 'Club Auftritte', artVariant: 'club', title: 'Club-Auftritte', body: 'Wenn der erste Beat einsetzt, beginnt die Nacht erst richtig. Mit energiegeladenen Sets, treibenden Sounds und dem richtigen Gespür für den Dancefloor sorge ich für volle Tanzflächen und Nächte, die in Erinnerung bleiben.' },
+      ],
+    };
+    await db.execute({
+      sql: `INSERT INTO blocks (page, type, sort_order, visible, locked, config) VALUES ('home', 'service-cards', 3, 1, 0, ?)`,
+      args: [JSON.stringify(serviceConfig)],
+    });
+  }
+
+  // One-time fixup: pricing-cards was seeded at sort_order 0 (later 3) before other blocks existed.
+  await db.execute(`UPDATE blocks SET sort_order = 4 WHERE page = 'home' AND type = 'pricing-cards' AND sort_order IN (0, 3)`);
 
   await db.execute(`CREATE TABLE IF NOT EXISTS reviews (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

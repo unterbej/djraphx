@@ -53,3 +53,19 @@ export interface FeatureGridConfig {
   items: FeatureItem[];
   closingText: string;
 }
+
+export type ServiceArtVariant = 'wedding' | 'event' | 'bday' | 'public' | 'club';
+
+export interface ServiceItem {
+  categoryLabel: string;
+  artVariant: ServiceArtVariant;
+  title: string;
+  body: string;
+}
+
+export interface ServiceCardsConfig {
+  eyebrow: string;
+  title: HighlightedTitle;
+  lead: string;
+  items: ServiceItem[];
+}
