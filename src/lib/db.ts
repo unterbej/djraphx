@@ -98,6 +98,57 @@ export async function ensureInit(): Promise<void> {
     data BLOB NOT NULL
   )`);
 
+  // Seed the hero, marquee, and feature-grid blocks reproducing today's hardcoded content, once.
+  const existingHero = await db.execute(`SELECT COUNT(*) as cnt FROM blocks WHERE page = 'home' AND type = 'hero'`);
+  if ((existingHero.rows[0][0] as number) === 0) {
+    const heroConfig = {
+      eyebrow: 'DJ · Kärnten · Österreich',
+      title: 'Dein DJ für stilvolle & unvergessliche Events',
+      subtitle: 'Professioneller DJ für Hochzeiten, Geburtstage, Firmenevents, Öffentliche Veranstaltungen und Club-Auftritte — in Kärnten und Umgebung.',
+      quote: '"Unvergessliche Nächte, beste Unterhaltung und volle Tanzflächen garantiert."',
+      statEvents: '120+',
+      statSatisfaction: '100%',
+      statResponse: '<24h',
+      image: '/portrait-hero.png',
+      imageAlt: 'DJ RAPHX mit Kopfhörern',
+      imageBadge: 'DJ RAPHX · Kärnten',
+    };
+    await db.execute({
+      sql: `INSERT INTO blocks (page, type, sort_order, visible, locked, config) VALUES ('home', 'hero', 0, 1, 1, ?)`,
+      args: [JSON.stringify(heroConfig)],
+    });
+  }
+
+  const existingMarquee = await db.execute(`SELECT COUNT(*) as cnt FROM blocks WHERE page = 'home' AND type = 'marquee'`);
+  if ((existingMarquee.rows[0][0] as number) === 0) {
+    const marqueeConfig = {
+      text: 'Feiern beginnt mit der richtigen Musik · Erinnerungen fürs Leben statt gewöhnlicher Abende · Emotionen, die bleiben. Musik, die verbindet · Mehr Stimmung. Mehr Emotion. Mehr Party · Nicht einfach feiern – erleben · Eure Nacht. Eure Musik. Eure Erinnerungen ·',
+    };
+    await db.execute({
+      sql: `INSERT INTO blocks (page, type, sort_order, visible, locked, config) VALUES ('home', 'marquee', 1, 1, 0, ?)`,
+      args: [JSON.stringify(marqueeConfig)],
+    });
+  }
+
+  const existingFeatures = await db.execute(`SELECT COUNT(*) as cnt FROM blocks WHERE page = 'home' AND type = 'feature-grid'`);
+  if ((existingFeatures.rows[0][0] as number) === 0) {
+    const featureConfig = {
+      eyebrow: 'Warum du DJ RAPHX buchen solltest?',
+      title: { prefix: 'Weil deine Feier keine', highlight: 'Standard-Playlist', suffix: 'verdient.' },
+      lead: 'Ich spiele nicht einfach Songs ab. Ich beobachte die Tanzfläche, gehe auf deine Gäste ein und passe die Musik genau an die Stimmung des Abends an.',
+      items: [
+        { title: 'Persönlich statt 08/15', body: 'Vor deinem Event sprechen wir über Musik, Ablauf, Wünsche und No-Gos. So weiß ich schon vor dem ersten Song, was dir wichtig ist.' },
+        { title: 'DJ & Technik aus einer Hand', body: 'Durch meinen technischen Background bekommst du nicht nur Musik, sondern auch zuverlässigen Sound, Licht und einen professionellen Aufbau.' },
+        { title: 'Entspannt feiern', body: 'Klare Absprachen, zuverlässige Vorbereitung und ein DJ, der den Abend im Blick behält, damit du deine eigene Feier genießen kannst.' },
+      ],
+      closingText: 'Am Ende zählt nur eines: Eine volle Tanzfläche, glückliche Gäste und ein Abend, an den man sich gerne erinnert.',
+    };
+    await db.execute({
+      sql: `INSERT INTO blocks (page, type, sort_order, visible, locked, config) VALUES ('home', 'feature-grid', 2, 1, 0, ?)`,
+      args: [JSON.stringify(featureConfig)],
+    });
+  }
+
   // Seed the pricing-cards block reproducing today's hardcoded packages, once.
   const existingBlocks = await db.execute(`SELECT COUNT(*) as cnt FROM blocks WHERE page = 'home' AND type = 'pricing-cards'`);
   if ((existingBlocks.rows[0][0] as number) === 0) {
@@ -192,10 +243,13 @@ export async function ensureInit(): Promise<void> {
       ],
     };
     await db.execute({
-      sql: `INSERT INTO blocks (page, type, sort_order, visible, locked, config) VALUES ('home', 'pricing-cards', 0, 1, 0, ?)`,
+      sql: `INSERT INTO blocks (page, type, sort_order, visible, locked, config) VALUES ('home', 'pricing-cards', 3, 1, 0, ?)`,
       args: [JSON.stringify(pricingConfig)],
     });
   }
+
+  // One-time fixup: pricing-cards was seeded at sort_order 0 before hero/marquee/feature-grid existed.
+  await db.execute(`UPDATE blocks SET sort_order = 3 WHERE page = 'home' AND type = 'pricing-cards' AND sort_order = 0`);
 
   await db.execute(`CREATE TABLE IF NOT EXISTS reviews (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

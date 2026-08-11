@@ -14,3 +14,42 @@ export interface PricingCardsConfig {
   lead: string;
   packages: PackageItem[];
 }
+
+export interface HeroConfig {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  quote: string;
+  statEvents: string;
+  statSatisfaction: string;
+  statResponse: string;
+  image: string;
+  imageAlt: string;
+  imageBadge: string;
+}
+
+export interface MarqueeConfig {
+  text: string;
+}
+
+export interface FeatureItem {
+  title: string;
+  body: string;
+}
+
+// Sections use a common "prefix + highlighted phrase + suffix" heading pattern
+// (the grad-text gradient span). Modeled as three plain-text fields rather than
+// allowing raw HTML in a title field, to keep block config safely renderable.
+export interface HighlightedTitle {
+  prefix: string;
+  highlight: string;
+  suffix: string;
+}
+
+export interface FeatureGridConfig {
+  eyebrow: string;
+  title: HighlightedTitle;
+  lead: string;
+  items: FeatureItem[];
+  closingText: string;
+}

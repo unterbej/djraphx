@@ -147,90 +147,8 @@ export default function DJPage({ cms, blocks }: { cms: CmsContent; blocks: Block
         </div>
       </nav>
 
-      {/* HERO */}
-      <header className="hero" id="hero">
-        <canvas id="heroCanvas" aria-hidden="true" />
-        <div className="hero-grid" aria-hidden="true" />
-        <div className="hero-ring" aria-hidden="true" />
-        <div className="wrap">
-          <div className="hero-layout">
-            <div className="hero-inner">
-              <div className="hero-label reveal"><span className="eyebrow">DJ · Kärnten · Österreich</span></div>
-              <h1 className="disp hero-title reveal">
-                {c('hero_title', 'Dein DJ für stilvolle & unvergessliche Events').split(/(&|stilvolle)/i).length > 1
-                  ? <>Dein DJ für<br/><span className="grad-text">stilvolle &amp;</span><br/>unvergessliche<br/>Events</>
-                  : c('hero_title')}
-              </h1>
-              <p className="hero-sub reveal">{c('hero_subtitle')}</p>
-              <p className="hero-quote reveal">{c('hero_quote')}</p>
-              <div className="hero-ctas reveal">
-                <a href="#kontakt" className="btn btn-primary">Jetzt Termin vereinbaren <span className="arrow">→</span></a>
-                <a href="https://wa.me/436605459207" className="btn btn-wa" target="_blank" rel="noopener">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                  WhatsApp
-                </a>
-              </div>
-              <div className="hero-stats reveal">
-                <div><div className="stat-num">{c('hero_stats_events', '120+')}</div><div className="stat-lbl">Veranstaltungen</div></div>
-                <div><div className="stat-num">{c('hero_stats_genres', '100%')}</div><div className="stat-lbl">Kundenzufriedenheit</div></div>
-                <div><div className="stat-num">{c('hero_stats_available', '<24h')}</div><div className="stat-lbl">Rückmeldezeit</div></div>
-              </div>
-            </div>
-            <div className="hero-frame">
-              <div className="hero-frame-glow" />
-              <div className="hero-frame-img">
-                <Image src="/portrait-hero.png" alt="DJ RAPHX mit Kopfhörern" fill style={{objectFit:'cover',objectPosition:'center top'}} priority />
-              </div>
-              <div className="hero-frame-badge">DJ RAPHX · Kärnten</div>
-            </div>
-          </div>
-        </div>
-        <div className="scroll-hint" aria-hidden="true">Scroll</div>
-      </header>
-
-      {/* MARQUEE */}
-      <div className="quote-strip" aria-hidden="true">
-        <div className="quote-track">
-          {[0, 1].map(i => (
-            <span key={i} className="quote-copy" aria-hidden={i > 0 ? 'true' : undefined}>
-              {c('marquee_text', 'Feiern beginnt mit der richtigen Musik · Erinnerungen fürs Leben · Emotionen, die bleiben ·')}&nbsp;
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* FEATURES */}
-      <section id="features" className="why-dj">
-        <div className="wrap">
-          <div className="sec-head reveal" style={{textAlign:'center'}}>
-            <span className="eyebrow" style={{justifyContent:'center',display:'inline-flex'}}>Warum du DJ RAPHX buchen solltest?</span>
-            <h2 className="sec-title">Weil deine Feier keine <span className="grad-text">Standard-Playlist</span> verdient.</h2>
-            <p className="sec-lead" style={{margin:'0 auto'}}>Ich spiele nicht einfach Songs ab. Ich beobachte die Tanzfläche, gehe auf deine Gäste ein und passe die Musik genau an die Stimmung des Abends an.</p>
-          </div>
-          <div className="features-grid">
-            <div className="feat-card reveal">
-              <div className="feat-num">01</div>
-              <h3 className="feat-title">Persönlich statt 08/15</h3>
-              <p className="feat-body">Vor deinem Event sprechen wir über Musik, Ablauf, Wünsche und No-Gos. So weiß ich schon vor dem ersten Song, was dir wichtig ist.</p>
-            </div>
-            <div className="feat-card reveal">
-              <div className="feat-num">02</div>
-              <h3 className="feat-title">DJ &amp; Technik aus einer Hand</h3>
-              <p className="feat-body">Durch meinen technischen Background bekommst du nicht nur Musik, sondern auch zuverlässigen Sound, Licht und einen professionellen Aufbau.</p>
-            </div>
-            <div className="feat-card reveal">
-              <div className="feat-num">03</div>
-              <h3 className="feat-title">Entspannt feiern</h3>
-              <p className="feat-body">Klare Absprachen, zuverlässige Vorbereitung und ein DJ, der den Abend im Blick behält, damit du deine eigene Feier genießen kannst.</p>
-            </div>
-          </div>
-          <p className="why-text reveal" style={{textAlign:'center',margin:'36px auto 0'}}>Am Ende zählt nur eines: Eine volle Tanzfläche, glückliche Gäste und ein Abend, an den man sich gerne erinnert.</p>
-          <div className="feat-ctas reveal">
-            <a href="#kontakt" className="btn btn-primary">Jetzt Termin vereinbaren <span className="arrow">→</span></a>
-            <a href="https://wa.me/436605459207" className="btn btn-wa" target="_blank" rel="noopener">Über WhatsApp anfragen</a>
-          </div>
-        </div>
-      </section>
+      {/* HERO, MARQUEE, FEATURES (block-driven) */}
+      <BlockRenderer blocks={blocks.filter(b => ['hero', 'marquee', 'feature-grid'].includes(b.type))} />
 
       {/* SERVICES */}
       <section id="services">
@@ -389,7 +307,7 @@ export default function DJPage({ cms, blocks }: { cms: CmsContent; blocks: Block
       </section>
 
       {/* PACKAGES (block-driven) */}
-      <BlockRenderer blocks={blocks} />
+      <BlockRenderer blocks={blocks.filter(b => b.type === 'pricing-cards')} />
 
       {/* PROCESS */}
       <section id="buchung" style={{paddingTop:0}}>
