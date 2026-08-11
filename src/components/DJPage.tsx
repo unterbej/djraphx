@@ -177,7 +177,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
             <div className="hero-frame">
               <div className="hero-frame-glow" />
               <div className="hero-frame-img">
-                <Image src="/portrait-hero.jpg" alt="DJ RAPHX mit Kopfhörern" fill style={{objectFit:'cover',objectPosition:'center top'}} priority />
+                <Image src="/portrait-hero.png" alt="DJ RAPHX mit Kopfhörern" fill style={{objectFit:'cover',objectPosition:'center top'}} priority />
               </div>
               <div className="hero-frame-badge">DJ RAPHX · Kärnten</div>
             </div>
