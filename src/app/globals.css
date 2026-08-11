@@ -144,6 +144,7 @@ section { padding: 110px 0; position: relative; z-index: 1; }
 .svc-card { border-radius: var(--rl); border: 1px solid var(--border); overflow: hidden; background: var(--bg1); transition: transform .3s var(--ease), border-color .3s, box-shadow .3s; }
 .svc-card:hover { transform: translateY(-4px); border-color: var(--border2); box-shadow: 0 12px 40px rgba(124,58,255,.2); }
 .svc-art { aspect-ratio: 16/9; position: relative; display: grid; place-items: center; overflow: hidden; }
+.svc-art-wedding { background: radial-gradient(circle at 30% 70%, rgba(255,182,193,.35), transparent 55%), radial-gradient(circle at 80% 20%, rgba(124,58,255,.4), transparent 50%), #0a0c18; }
 .svc-art-bday { background: radial-gradient(circle at 30% 70%, rgba(14,165,255,.5), transparent 55%), radial-gradient(circle at 80% 20%, rgba(0,212,255,.4), transparent 50%), #0a0c18; }
 .svc-art-event { background: radial-gradient(circle at 50% 50%, rgba(124,58,255,.5), transparent 55%), radial-gradient(circle at 20% 80%, rgba(14,165,255,.3), transparent 50%), #0a0c18; }
 .svc-art-club { background: radial-gradient(circle at 30% 70%, rgba(124,58,255,.55), transparent 60%), radial-gradient(circle at 70% 30%, rgba(192,38,211,.4), transparent 55%), #07081a; }

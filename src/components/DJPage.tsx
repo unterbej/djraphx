@@ -250,16 +250,27 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
           <div className="sec-head reveal">
             <span className="eyebrow">Ich bin dein DJ für</span>
             <h2 className="sec-title">Dein Event. <span className="grad-text">Meine Musik.</span></h2>
-            <p className="sec-lead">Vom Geburtstag bis zur Clubnacht — maßgeschneiderte Sets für jeden Anlass.</p>
+            <p className="sec-lead">Vom Hochzeitstanz bis zur Clubnacht — maßgeschneiderte Sets für jeden Anlass.</p>
           </div>
           <div className="services-grid">
+            <article className="svc-card reveal">
+              <div className="svc-art svc-art-wedding">
+                <span className="svc-cat-label">Hochzeiten</span>
+                <div className="eq-bars" aria-hidden="true"><span/><span/><span/><span/><span/></div>
+              </div>
+              <div className="svc-body">
+                <div className="svc-label">01 — Service</div>
+                <h3 className="svc-title">Hochzeits-DJ</h3>
+                <p className="svc-text">Als Hochzeits-DJ in Kärnten begleite ich euren schönsten Tag mit Gefühl — vom Sektempfang über den Hochzeitstanz bis zur Party bis in die Nacht. Musikwünsche und Ablauf besprechen wir vorab persönlich.</p>
+              </div>
+            </article>
             <article className="svc-card reveal">
               <div className="svc-art svc-art-bday">
                 <span className="svc-cat-label">Geburtstage</span>
                 <div className="eq-bars" aria-hidden="true"><span/><span/><span/><span/><span/></div>
               </div>
               <div className="svc-body">
-                <div className="svc-label">01 — Service</div>
+                <div className="svc-label">02 — Service</div>
                 <h3 className="svc-title">Geburtstage</h3>
                 <p className="svc-text">Bei Geburtstagsfeiern sorge ich als DJ für die perfekte Stimmung. Mit aktuellen Charts, den größten Klassikern und mitreißenden Partyhits bleibt die Tanzfläche gefüllt.</p>
               </div>
@@ -270,7 +281,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
                 <div className="eq-bars" aria-hidden="true"><span/><span/><span/><span/><span/></div>
               </div>
               <div className="svc-body">
-                <div className="svc-label">02 — Service</div>
+                <div className="svc-label">03 — Service</div>
                 <h3 className="svc-title">Events &amp; Firmen</h3>
                 <p className="svc-text">Die richtige Musik macht den Unterschied. Mit Gefühl für Rhythmus, einem Gespür für Menschen und der Fähigkeit, die Stimmung zu lesen, entsteht eine Atmosphäre.</p>
               </div>
@@ -281,7 +292,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
                 <div className="eq-bars" aria-hidden="true"><span/><span/><span/><span/><span/></div>
               </div>
               <div className="svc-body">
-                <div className="svc-label">03 — Service</div>
+                <div className="svc-label">04 — Service</div>
                 <h3 className="svc-title">Club Auftritte</h3>
                 <p className="svc-text">Wenn der erste Song einsetzt, beginnt die Nacht erst richtig. Mit energiegeladenen Sets sorge ich für volle Tanzflächen und unvergessliche Nächte.</p>
               </div>
@@ -384,7 +395,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
           <div className="sec-head reveal">
             <span className="eyebrow">Meine DJ-Angebote</span>
             <h2 className="sec-title">Das passende <span className="grad-text">Paket</span> für dich</h2>
-            <p className="sec-lead">Von kleinen Geburtstagsfeiern bis zu großen öffentlichen Veranstaltungen — transparent und fair.</p>
+            <p className="sec-lead">Von der Hochzeit bis zur großen öffentlichen Veranstaltung — transparent und fair.</p>
           </div>
           <div className="pkg-grid">
             <div className="pkg-card reveal">
@@ -404,7 +415,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
             <div className="pkg-card popular reveal">
               <div className="pkg-badge">⭐ Beliebt</div>
               <h3 className="pkg-name">Standardpaket</h3>
-              <p className="pkg-sub">Perfekt für Geburtstage, Firmenfeiern und Events bis 200 Personen</p>
+              <p className="pkg-sub">Perfekt für Hochzeiten, Geburtstage, Firmenfeiern und Events bis 200 Personen</p>
               <div className="pkg-divider" />
               <ul className="pkg-features">
                 <li>6–8 Stunden DJ Service</li>
@@ -420,7 +431,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
             </div>
             <div className="pkg-card reveal">
               <h3 className="pkg-name">Premium Paket</h3>
-              <p className="pkg-sub">Perfekt für große Veranstaltungen ab 200 Personen</p>
+              <p className="pkg-sub">Perfekt für große Hochzeiten und Veranstaltungen ab 200 Personen</p>
               <div className="pkg-divider" />
               <ul className="pkg-features">
                 <li>Große professionelle Soundanlage</li>
@@ -540,6 +551,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
             <span className="eyebrow">Kontakt &amp; Buchung</span>
             <h2 className="sec-title">Lass uns dein Event <span className="grad-text">unvergesslich</span> machen</h2>
             <p className="sec-lead">Melde dich gerne — ich melde mich innerhalb von 24 Stunden zurück.</p>
+            <p style={{fontSize:'13px',color:'var(--muted)',maxWidth:'560px',margin:'8px 0 0'}}>Als DJ mit Sitz in Feffernitz bin ich für Hochzeiten, Geburtstage und Firmenevents in ganz Kärnten unterwegs — von Klagenfurt über Villach bis Spittal an der Drau.</p>
           </div>
           <div className="contact-grid">
             <div className="contact-info reveal">

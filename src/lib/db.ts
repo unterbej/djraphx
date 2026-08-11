@@ -82,19 +82,28 @@ export async function ensureInit(): Promise<void> {
     role TEXT DEFAULT '',
     image_url TEXT DEFAULT '',
     sort_order INTEGER DEFAULT 0,
-    created_at TEXT DEFAULT (datetime('now'))
+    created_at TEXT DEFAULT (datetime('now')),
+    rating INTEGER DEFAULT 5
   )`);
+
+  // Migration for tables created before the rating column existed
+  try {
+    await db.execute(`ALTER TABLE reviews ADD COLUMN rating INTEGER DEFAULT 5`);
+  } catch {
+    // column already exists
+  }
 
   // Seed one default review if table is empty
   const existing = await db.execute(`SELECT COUNT(*) as cnt FROM reviews`);
   if ((existing.rows[0][0] as number) === 0) {
     await db.execute({
-      sql: `INSERT INTO reviews (text, author, role, sort_order) VALUES (?, ?, ?, ?)`,
+      sql: `INSERT INTO reviews (text, author, role, sort_order, rating) VALUES (?, ?, ?, ?, ?)`,
       args: [
         "Wir sind sehr zufrieden mit DJ Raphael Taxer (RAPHX)! Er ist unser DJ im Tanzlokal Senita's Treff in Feffernitz und sorgt jedes Mal für eine großartige Stimmung. Die Musikauswahl ist immer hervorragend und perfekt auf unsere Gäste abgestimmt. Wir empfehlen ihn sehr gerne weiter.",
         'Senita Vejzovic',
         "Inhaberin des Lokals Senita's Treff in Feffernitz",
         0,
+        5,
       ],
     });
   }
@@ -137,7 +146,7 @@ export async function ensureInit(): Promise<void> {
   // Default CMS content
   const defaultContent: [string, string][] = [
     ['hero_title', 'Dein DJ für stilvolle & unvergessliche Events'],
-    ['hero_subtitle', 'Professioneller DJ für Geburtstage, Firmenevents, Öffentliche Veranstaltungen und Club-Auftritte — in Kärnten und Umgebung.'],
+    ['hero_subtitle', 'Professioneller DJ für Hochzeiten, Geburtstage, Firmenevents, Öffentliche Veranstaltungen und Club-Auftritte — in Kärnten und Umgebung.'],
     ['hero_quote', '"Unvergessliche Nächte, beste Unterhaltung und volle Tanzflächen garantiert."'],
     ['hero_stats_events', '120+'],
     ['hero_stats_genres', '100%'],

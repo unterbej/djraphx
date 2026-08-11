@@ -18,9 +18,28 @@ interface Review {
   role: string;
   image_url: string;
   sort_order: number;
+  rating: number;
 }
 
-const EMPTY: Omit<Review, 'id' | 'sort_order'> = { text: '', author: '', role: '', image_url: '' };
+const EMPTY: Omit<Review, 'id' | 'sort_order'> = { text: '', author: '', role: '', image_url: '', rating: 5 };
+
+function StarPicker({ value, onChange }: { value: number; onChange: (n: number) => void }) {
+  return (
+    <div style={{ display: 'flex', gap: '4px' }}>
+      {[1, 2, 3, 4, 5].map(n => (
+        <button
+          key={n}
+          type="button"
+          onClick={() => onChange(n)}
+          aria-label={`${n} Sterne`}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', fontSize: '22px', lineHeight: 1, color: n <= value ? '#ffb400' : 'var(--border2)' }}
+        >
+          ★
+        </button>
+      ))}
+    </div>
+  );
+}
 
 function SortableReview({ review, onEdit, onDelete }: { review: Review; onEdit: (r: Review) => void; onDelete: (id: number) => void }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: review.id });
@@ -56,7 +75,8 @@ function SortableReview({ review, onEdit, onDelete }: { review: Review; onEdit: 
 
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontWeight:600, fontSize:'15px', marginBottom:'2px' }}>{review.author}</div>
-        {review.role && <div style={{ fontSize:'12px', color:'var(--muted)', marginBottom:'8px' }}>{review.role}</div>}
+        {review.role && <div style={{ fontSize:'12px', color:'var(--muted)', marginBottom:'4px' }}>{review.role}</div>}
+        <div style={{ color:'#ffb400', fontSize:'13px', letterSpacing:'1px', marginBottom:'8px' }}>{'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</div>
         <p style={{ fontSize:'13px', color:'var(--dim)', lineHeight:1.6, display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical', overflow:'hidden' }}>
           {review.text}
         </p>
@@ -96,7 +116,7 @@ export default function AdminReviews() {
   useEffect(() => { load(); }, []);
 
   const openNew = () => { setEditing({ ...EMPTY }); setEditId(null); setErr(''); };
-  const openEdit = (r: Review) => { setEditing({ text: r.text, author: r.author, role: r.role, image_url: r.image_url }); setEditId(r.id); setErr(''); };
+  const openEdit = (r: Review) => { setEditing({ text: r.text, author: r.author, role: r.role, image_url: r.image_url, rating: r.rating }); setEditId(r.id); setErr(''); };
   const closeEdit = () => { setEditing(null); setEditId(null); };
 
   const saveEdit = async () => {
@@ -198,6 +218,10 @@ export default function AdminReviews() {
               <div className="field">
                 <label>Bild-URL <span style={{ color:'var(--muted)',fontWeight:400,fontSize:'9px',letterSpacing:'.1em' }}>(optional – leer = Initialen)</span></label>
                 <input type="url" value={editing.image_url} onChange={e => setEditing(v => v ? { ...v, image_url: e.target.value } : v)} placeholder="https://beispiel.at/foto.jpg" style={{ color:'var(--text)' }} />
+              </div>
+              <div className="field">
+                <label>Bewertung (Sterne)</label>
+                <StarPicker value={editing.rating} onChange={n => setEditing(v => v ? { ...v, rating: n } : v)} />
               </div>
 
               {/* Preview */}

@@ -9,6 +9,7 @@ interface Review {
   author: string;
   role: string;
   image_url: string;
+  rating: number;
 }
 
 export default function ReviewSlider() {
@@ -49,7 +50,7 @@ export default function ReviewSlider() {
   return (
     <div className="review-slider-wrap">
       <div className={`review-slider-inner${animating ? ` slide-out-${dir}` : ''}`}>
-        <div className="stars">★★★★★</div>
+        <div className="stars">{'★'.repeat(r.rating || 5)}{'☆'.repeat(5 - (r.rating || 5))}</div>
 
         {r.image_url && (
           <div className="review-avatar">

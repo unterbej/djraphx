@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { dbAll } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "DJ RAPHX – DJ Kärnten | Hochzeits-DJ & Event-DJ buchen",
@@ -48,8 +49,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const jsonLd = {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const reviews = await dbAll<{ rating: number }>(`SELECT rating FROM reviews`);
+  const ratingCount = reviews.length;
+  const ratingValue = ratingCount > 0
+    ? Number((reviews.reduce((sum, r) => sum + (r.rating || 5), 0) / ratingCount).toFixed(1))
+    : null;
+
+  const jsonLd: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "DJ RAPHX",
@@ -82,6 +89,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       "https://www.tiktok.com/@dj_raphx",
     ],
   };
+
+  // Only include real, non-empty rating data — fabricated values violate Google's structured-data guidelines.
+  if (ratingValue !== null) {
+    jsonLd.aggregateRating = {
+      "@type": "AggregateRating",
+      "ratingValue": ratingValue,
+      "reviewCount": ratingCount,
+      "bestRating": 5,
+      "worstRating": 1,
+    };
+  }
 
   return (
     <html lang="de">
