@@ -81,3 +81,23 @@ export interface QualityGridConfig {
   title: HighlightedTitle;
   items: QualityItem[];
 }
+
+export type SocialPlatform = 'instagram' | 'facebook' | 'tiktok';
+
+export interface SocialLink {
+  platform: SocialPlatform;
+  url: string;
+}
+
+export interface AboutSectionConfig {
+  eyebrow: string;
+  title: HighlightedTitle;
+  subtitle: string;
+  text1: string;
+  text2: string;
+  image: string;
+  imageAlt: string;
+  imageTag: string;
+  socialIntro: string;
+  socialLinks: SocialLink[];
+}

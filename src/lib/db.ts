@@ -288,8 +288,37 @@ export async function ensureInit(): Promise<void> {
     });
   }
 
-  // One-time fixup: pricing-cards was seeded at sort_order 0/3 before other blocks existed.
-  await db.execute(`UPDATE blocks SET sort_order = 5 WHERE page = 'home' AND type = 'pricing-cards' AND sort_order IN (0, 3, 4)`);
+  const existingAbout = await db.execute(`SELECT COUNT(*) as cnt FROM blocks WHERE page = 'home' AND type = 'about-section'`);
+  if ((existingAbout.rows[0][0] as number) === 0) {
+    // Pull current text from cms_content (may already be admin-edited) rather than duplicating defaults.
+    const cmsRows = await db.execute(`SELECT key, value FROM cms_content WHERE key IN ('about_text1', 'about_text2')`);
+    const cmsValues: Record<string, string> = {};
+    for (const row of cmsRows.rows) cmsValues[row[0] as string] = row[1] as string;
+
+    const aboutConfig = {
+      eyebrow: 'Über mich',
+      title: { prefix: 'Wer ist', highlight: 'DJ Raphael Taxer', suffix: '(RAPHX)?' },
+      subtitle: 'Professioneller DJ, Elektrotechniker & Veranstaltungstechniker',
+      text1: cmsValues.about_text1 ?? 'Musik begleitet mich bereits seit meiner Kindheit und war für mich schon immer mehr als nur Unterhaltung. Schon früh entwickelte ich eine große Leidenschaft für verschiedene Musikrichtungen und brachte mir später selbst Instrumente wie Klavier und Gitarre bei. Dabei wurde mir bewusst, welche Kraft Musik besitzt und wie sehr sie Menschen verbinden kann.',
+      text2: cmsValues.about_text2 ?? 'Mein beruflicher Weg führte mich zunächst in die Elektrotechnik. Mit der Zeit merkte ich jedoch, dass mich dieser Beruf allein nicht vollständig erfüllt. Im Jahr 2026 gründete ich schließlich mein Kleinunternehmen — meine Leidenschaft zum Beruf.',
+      image: '/portrait-about.png',
+      imageAlt: 'DJ Raphael Taxer – RAPHX',
+      imageTag: 'RAPHX · 2026',
+      socialIntro: 'Du möchtest mehr über mich erfahren? Schau auf meinen Social-Media Accounts vorbei!',
+      socialLinks: [
+        { platform: 'instagram', url: 'https://www.instagram.com/dj_raphx/' },
+        { platform: 'facebook', url: 'https://www.facebook.com/raphael.taxer.7/' },
+        { platform: 'tiktok', url: 'https://www.tiktok.com/@dj_raphx?is_from_webapp=1&sender_device=pc' },
+      ],
+    };
+    await db.execute({
+      sql: `INSERT INTO blocks (page, type, sort_order, visible, locked, config) VALUES ('home', 'about-section', 6, 1, 0, ?)`,
+      args: [JSON.stringify(aboutConfig)],
+    });
+  }
+
+  // One-time fixup: pricing-cards was seeded at sort_order 0/3/4 before other blocks existed.
+  await db.execute(`UPDATE blocks SET sort_order = 7 WHERE page = 'home' AND type = 'pricing-cards' AND sort_order IN (0, 3, 4, 5)`);
 
   await db.execute(`CREATE TABLE IF NOT EXISTS reviews (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

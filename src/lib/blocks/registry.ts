@@ -5,6 +5,7 @@ import MarqueeBlock from '@/components/blocks/MarqueeBlock';
 import FeatureGridBlock from '@/components/blocks/FeatureGridBlock';
 import ServiceCardsBlock from '@/components/blocks/ServiceCardsBlock';
 import QualityGridBlock from '@/components/blocks/QualityGridBlock';
+import AboutSectionBlock from '@/components/blocks/AboutSectionBlock';
 
 export interface BlockDefinition {
   type: string;
@@ -38,6 +39,11 @@ export const BLOCK_REGISTRY: Record<string, BlockDefinition> = {
     type: 'quality-grid',
     label: 'Qualitäten',
     Component: QualityGridBlock,
+  },
+  'about-section': {
+    type: 'about-section',
+    label: 'Über mich',
+    Component: AboutSectionBlock,
   },
   'pricing-cards': {
     type: 'pricing-cards',
