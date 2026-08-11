@@ -6,6 +6,7 @@ import FeatureGridBlock from '@/components/blocks/FeatureGridBlock';
 import ServiceCardsBlock from '@/components/blocks/ServiceCardsBlock';
 import QualityGridBlock from '@/components/blocks/QualityGridBlock';
 import AboutSectionBlock from '@/components/blocks/AboutSectionBlock';
+import AdvantageGridBlock from '@/components/blocks/AdvantageGridBlock';
 
 export interface BlockDefinition {
   type: string;
@@ -44,6 +45,11 @@ export const BLOCK_REGISTRY: Record<string, BlockDefinition> = {
     type: 'about-section',
     label: 'Über mich',
     Component: AboutSectionBlock,
+  },
+  'advantage-grid': {
+    type: 'advantage-grid',
+    label: 'Vorteile',
+    Component: AdvantageGridBlock,
   },
   'pricing-cards': {
     type: 'pricing-cards',

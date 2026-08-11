@@ -156,32 +156,8 @@ export default function DJPage({ cms, blocks }: { cms: CmsContent; blocks: Block
       {/* ABOUT (block-driven) */}
       <BlockRenderer blocks={blocks.filter(b => b.type === 'about-section')} />
 
-      {/* ADVANTAGES */}
-      <section id="vorteile" style={{paddingTop:0}}>
-        <div className="wrap">
-          <div className="sec-head reveal">
-            <span className="eyebrow">Wenn Du mich buchst</span>
-            <h2 className="sec-title">3 Vorteile auf <span className="grad-text">einen Blick</span></h2>
-          </div>
-          <div className="adv-grid">
-            <div className="adv-card reveal">
-              <div className="adv-num">01</div>
-              <h3 className="adv-title">Organisation &amp; Ablauf</h3>
-              <p className="adv-body">Von der ersten Besprechung bis zum letzten Song begleite ich euch professionell und zuverlässig.</p>
-            </div>
-            <div className="adv-card reveal">
-              <div className="adv-num">02</div>
-              <h3 className="adv-title">Flexibilität</h3>
-              <p className="adv-body">Jede Feier ist einzigartig. Deshalb passe ich mich flexibel euren Wünschen und der Stimmung an.</p>
-            </div>
-            <div className="adv-card reveal">
-              <div className="adv-num">03</div>
-              <h3 className="adv-title">Persönlicher Touch</h3>
-              <p className="adv-body">Mit einem persönlichen Touch, euren Musikwünschen und dem Gespür für Stimmung entsteht eine einzigartige Atmosphäre.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ADVANTAGES (block-driven) */}
+      <BlockRenderer blocks={blocks.filter(b => b.type === 'advantage-grid')} />
 
       {/* PACKAGES (block-driven) */}
       <BlockRenderer blocks={blocks.filter(b => b.type === 'pricing-cards')} />

@@ -317,8 +317,25 @@ export async function ensureInit(): Promise<void> {
     });
   }
 
-  // One-time fixup: pricing-cards was seeded at sort_order 0/3/4 before other blocks existed.
-  await db.execute(`UPDATE blocks SET sort_order = 7 WHERE page = 'home' AND type = 'pricing-cards' AND sort_order IN (0, 3, 4, 5)`);
+  const existingAdvantages = await db.execute(`SELECT COUNT(*) as cnt FROM blocks WHERE page = 'home' AND type = 'advantage-grid'`);
+  if ((existingAdvantages.rows[0][0] as number) === 0) {
+    const advantageConfig = {
+      eyebrow: 'Wenn Du mich buchst',
+      title: { prefix: '3 Vorteile auf', highlight: 'einen Blick', suffix: '' },
+      items: [
+        { title: 'Organisation & Ablauf', body: 'Von der ersten Besprechung bis zum letzten Song begleite ich euch professionell und zuverlässig.' },
+        { title: 'Flexibilität', body: 'Jede Feier ist einzigartig. Deshalb passe ich mich flexibel euren Wünschen und der Stimmung an.' },
+        { title: 'Persönlicher Touch', body: 'Mit einem persönlichen Touch, euren Musikwünschen und dem Gespür für Stimmung entsteht eine einzigartige Atmosphäre.' },
+      ],
+    };
+    await db.execute({
+      sql: `INSERT INTO blocks (page, type, sort_order, visible, locked, config) VALUES ('home', 'advantage-grid', 7, 1, 0, ?)`,
+      args: [JSON.stringify(advantageConfig)],
+    });
+  }
+
+  // One-time fixup: pricing-cards was seeded at sort_order 0/3/4/5 before other blocks existed.
+  await db.execute(`UPDATE blocks SET sort_order = 8 WHERE page = 'home' AND type = 'pricing-cards' AND sort_order IN (0, 3, 4, 5, 7)`);
 
   await db.execute(`CREATE TABLE IF NOT EXISTS reviews (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

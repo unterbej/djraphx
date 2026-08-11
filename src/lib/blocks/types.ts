@@ -89,6 +89,17 @@ export interface SocialLink {
   url: string;
 }
 
+export interface AdvantageItem {
+  title: string;
+  body: string;
+}
+
+export interface AdvantageGridConfig {
+  eyebrow: string;
+  title: HighlightedTitle;
+  items: AdvantageItem[];
+}
+
 export interface AboutSectionConfig {
   eyebrow: string;
   title: HighlightedTitle;
