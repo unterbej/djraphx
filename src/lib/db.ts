@@ -268,8 +268,28 @@ export async function ensureInit(): Promise<void> {
     });
   }
 
-  // One-time fixup: pricing-cards was seeded at sort_order 0 (later 3) before other blocks existed.
-  await db.execute(`UPDATE blocks SET sort_order = 4 WHERE page = 'home' AND type = 'pricing-cards' AND sort_order IN (0, 3)`);
+  const existingQualities = await db.execute(`SELECT COUNT(*) as cnt FROM blocks WHERE page = 'home' AND type = 'quality-grid'`);
+  if ((existingQualities.rows[0][0] as number) === 0) {
+    const qualityConfig = {
+      eyebrow: 'Was macht Raphael besonders?',
+      title: { prefix: 'Der erste Eindruck ist', highlight: 'das Wichtigste.', suffix: '' },
+      items: [
+        { icon: 'clipboard', title: 'Professionelle Vorbereitung', body: 'Jedes Event wird individuell geplant, damit Musik, Ablauf und Stimmung perfekt zusammenpassen.' },
+        { icon: 'pulse', title: 'Gespür für Stimmung', body: 'Die richtige Musik läuft genau im passenden Moment und sorgt für eine volle Tanzfläche.' },
+        { icon: 'music', title: 'Individuelle Musikauswahl', body: 'Die Musik wird passend zu Gästen, Altersgruppe und Art des Events ausgewählt.' },
+        { icon: 'clock', title: 'Zuverlässigkeit', body: 'Pünktlichkeit, Organisation und professionelles Arbeiten sorgen für einen entspannten Abend.' },
+        { icon: 'signal', title: 'Hochwertige Technik', body: 'Professionelle Technik sorgt für sauberen Klang, starke Stimmung und reibungslosen Ablauf.' },
+        { icon: 'heart', title: 'Leidenschaft für Musik', body: 'Musik ist für mich mehr als Arbeit — meine Leidenschaft steckt dahinter und macht jedes Event einzigartig.' },
+      ],
+    };
+    await db.execute({
+      sql: `INSERT INTO blocks (page, type, sort_order, visible, locked, config) VALUES ('home', 'quality-grid', 4, 1, 0, ?)`,
+      args: [JSON.stringify(qualityConfig)],
+    });
+  }
+
+  // One-time fixup: pricing-cards was seeded at sort_order 0/3 before other blocks existed.
+  await db.execute(`UPDATE blocks SET sort_order = 5 WHERE page = 'home' AND type = 'pricing-cards' AND sort_order IN (0, 3, 4)`);
 
   await db.execute(`CREATE TABLE IF NOT EXISTS reviews (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

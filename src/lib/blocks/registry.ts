@@ -4,6 +4,7 @@ import HeroBlock from '@/components/blocks/HeroBlock';
 import MarqueeBlock from '@/components/blocks/MarqueeBlock';
 import FeatureGridBlock from '@/components/blocks/FeatureGridBlock';
 import ServiceCardsBlock from '@/components/blocks/ServiceCardsBlock';
+import QualityGridBlock from '@/components/blocks/QualityGridBlock';
 
 export interface BlockDefinition {
   type: string;
@@ -32,6 +33,11 @@ export const BLOCK_REGISTRY: Record<string, BlockDefinition> = {
     type: 'service-cards',
     label: 'Services',
     Component: ServiceCardsBlock,
+  },
+  'quality-grid': {
+    type: 'quality-grid',
+    label: 'Qualitäten',
+    Component: QualityGridBlock,
   },
   'pricing-cards': {
     type: 'pricing-cards',

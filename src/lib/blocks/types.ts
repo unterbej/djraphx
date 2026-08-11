@@ -69,3 +69,15 @@ export interface ServiceCardsConfig {
   lead: string;
   items: ServiceItem[];
 }
+
+export interface QualityItem {
+  icon: string; // key into QUALITY_ICONS
+  title: string;
+  body: string;
+}
+
+export interface QualityGridConfig {
+  eyebrow: string;
+  title: HighlightedTitle;
+  items: QualityItem[];
+}

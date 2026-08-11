@@ -150,31 +150,8 @@ export default function DJPage({ cms, blocks }: { cms: CmsContent; blocks: Block
       {/* HERO, MARQUEE, FEATURES, SERVICES (block-driven) */}
       <BlockRenderer blocks={blocks.filter(b => ['hero', 'marquee', 'feature-grid', 'service-cards'].includes(b.type))} />
 
-      {/* QUALITIES */}
-      <section id="qualitaeten" style={{paddingTop:0}}>
-        <div className="wrap">
-          <div className="sec-head reveal">
-            <span className="eyebrow">Was macht Raphael besonders?</span>
-            <h2 className="sec-title">Der erste Eindruck ist <span className="grad-text">das Wichtigste.</span></h2>
-          </div>
-          <div className="qual-grid">
-            {[
-              { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>, title: 'Professionelle Vorbereitung', body: 'Jedes Event wird individuell geplant, damit Musik, Ablauf und Stimmung perfekt zusammenpassen.' },
-              { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12h3l2-6 4 12 2-6 2 3h5"/></svg>, title: 'Gespür für Stimmung', body: 'Die richtige Musik läuft genau im passenden Moment und sorgt für eine volle Tanzfläche.' },
-              { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>, title: 'Individuelle Musikauswahl', body: 'Die Musik wird passend zu Gästen, Altersgruppe und Art des Events ausgewählt.' },
-              { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>, title: 'Zuverlässigkeit', body: 'Pünktlichkeit, Organisation und professionelles Arbeiten sorgen für einen entspannten Abend.' },
-              { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>, title: 'Hochwertige Technik', body: 'Professionelle Technik sorgt für sauberen Klang, starke Stimmung und reibungslosen Ablauf.' },
-              { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>, title: 'Leidenschaft für Musik', body: 'Musik ist für mich mehr als Arbeit — meine Leidenschaft steckt dahinter und macht jedes Event einzigartig.' },
-            ].map((q, i) => (
-              <div key={i} className="qual-card reveal">
-                <div className="qual-ico">{q.icon}</div>
-                <h4 className="qual-title">{q.title}</h4>
-                <p className="qual-body">{q.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* QUALITIES (block-driven) */}
+      <BlockRenderer blocks={blocks.filter(b => b.type === 'quality-grid')} />
 
       {/* ABOUT */}
       <section id="about">
