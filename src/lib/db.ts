@@ -337,6 +337,23 @@ export async function ensureInit(): Promise<void> {
   // One-time fixup: pricing-cards was seeded at sort_order 0/3/4/5 before other blocks existed.
   await db.execute(`UPDATE blocks SET sort_order = 8 WHERE page = 'home' AND type = 'pricing-cards' AND sort_order IN (0, 3, 4, 5, 7)`);
 
+  const existingProcess = await db.execute(`SELECT COUNT(*) as cnt FROM blocks WHERE page = 'home' AND type = 'process-steps'`);
+  if ((existingProcess.rows[0][0] as number) === 0) {
+    const processConfig = {
+      eyebrow: 'Wie funktioniert deine Buchung?',
+      title: { prefix: 'In', highlight: '3 Schritten', suffix: 'zum Erlebnis' },
+      steps: [
+        { title: 'Anfrage senden', body: 'Klicke auf den Button und fülle das Anfrageformular aus. Teile mir dein Wunschdatum sowie eine passende Uhrzeit für einen Rückruf mit.' },
+        { title: 'Kennenlern-Gespräch', body: 'In einem kurzen Gespräch besprechen wir dein Event, deine Wünsche und Vorstellungen. Gemeinsam finden wir heraus, ob ich der passende DJ bin.' },
+        { title: 'Terminvereinbarung', body: 'Sobald alles besprochen ist, fixieren wir deinen Termin. Danach kannst du dich entspannen und dich auf dein Event freuen.' },
+      ],
+    };
+    await db.execute({
+      sql: `INSERT INTO blocks (page, type, sort_order, visible, locked, config) VALUES ('home', 'process-steps', 9, 1, 0, ?)`,
+      args: [JSON.stringify(processConfig)],
+    });
+  }
+
   await db.execute(`CREATE TABLE IF NOT EXISTS reviews (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     text TEXT NOT NULL,

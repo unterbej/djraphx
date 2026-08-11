@@ -162,36 +162,8 @@ export default function DJPage({ cms, blocks }: { cms: CmsContent; blocks: Block
       {/* PACKAGES (block-driven) */}
       <BlockRenderer blocks={blocks.filter(b => b.type === 'pricing-cards')} />
 
-      {/* PROCESS */}
-      <section id="buchung" style={{paddingTop:0}}>
-        <div className="wrap">
-          <div className="sec-head reveal" style={{textAlign:'center'}}>
-            <span className="eyebrow">Wie funktioniert deine Buchung?</span>
-            <h2 className="sec-title">In <span className="grad-text">3 Schritten</span> zum Erlebnis</h2>
-          </div>
-          <div className="process-steps">
-            <div className="step reveal">
-              <div className="step-num">1</div>
-              <h3 className="step-title">Anfrage senden</h3>
-              <p className="step-body">Klicke auf den Button und fülle das Anfrageformular aus. Teile mir dein Wunschdatum sowie eine passende Uhrzeit für einen Rückruf mit.</p>
-            </div>
-            <div className="step reveal">
-              <div className="step-num">2</div>
-              <h3 className="step-title">Kennenlern-Gespräch</h3>
-              <p className="step-body">In einem kurzen Gespräch besprechen wir dein Event, deine Wünsche und Vorstellungen. Gemeinsam finden wir heraus, ob ich der passende DJ bin.</p>
-            </div>
-            <div className="step reveal">
-              <div className="step-num">3</div>
-              <h3 className="step-title">Terminvereinbarung</h3>
-              <p className="step-body">Sobald alles besprochen ist, fixieren wir deinen Termin. Danach kannst du dich entspannen und dich auf dein Event freuen.</p>
-            </div>
-          </div>
-          <div className="process-ctas reveal">
-            <a href="#kontakt" className="btn btn-primary">Buche mich als DJ! <span className="arrow">→</span></a>
-            <a href="https://wa.me/436605459207" className="btn btn-wa" target="_blank" rel="noopener">Über WhatsApp anfragen</a>
-          </div>
-        </div>
-      </section>
+      {/* PROCESS (block-driven) */}
+      <BlockRenderer blocks={blocks.filter(b => b.type === 'process-steps')} />
 
       {/* CALENDAR */}
       <CalendarSection />

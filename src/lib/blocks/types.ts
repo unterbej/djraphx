@@ -100,6 +100,17 @@ export interface AdvantageGridConfig {
   items: AdvantageItem[];
 }
 
+export interface ProcessStep {
+  title: string;
+  body: string;
+}
+
+export interface ProcessStepsConfig {
+  eyebrow: string;
+  title: HighlightedTitle;
+  steps: ProcessStep[];
+}
+
 export interface AboutSectionConfig {
   eyebrow: string;
   title: HighlightedTitle;
