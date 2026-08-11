@@ -170,8 +170,8 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
               </div>
               <div className="hero-stats reveal">
                 <div><div className="stat-num">{c('hero_stats_events', '120+')}</div><div className="stat-lbl">Veranstaltungen</div></div>
-                <div><div className="stat-num">{c('hero_stats_genres', '8')}</div><div className="stat-lbl">Genres</div></div>
-                <div><div className="stat-num">{c('hero_stats_available', '24/7')}</div><div className="stat-lbl">Erreichbar</div></div>
+                <div><div className="stat-num">{c('hero_stats_genres', '100%')}</div><div className="stat-lbl">Kundenzufriedenheit</div></div>
+                <div><div className="stat-num">{c('hero_stats_available', '<24h')}</div><div className="stat-lbl">Rückmeldezeit</div></div>
               </div>
             </div>
             <div className="hero-frame">
