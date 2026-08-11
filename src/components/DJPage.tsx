@@ -260,8 +260,19 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
               </div>
               <div className="svc-body">
                 <div className="svc-label">01 — Service</div>
-                <h3 className="svc-title">Hochzeits-DJ</h3>
-                <p className="svc-text">Als Hochzeits-DJ in Kärnten begleite ich euren schönsten Tag mit Gefühl — vom Sektempfang über den Hochzeitstanz bis zur Party bis in die Nacht. Musikwünsche und Ablauf besprechen wir vorab persönlich.</p>
+                <h3 className="svc-title">Hochzeiten</h3>
+                <p className="svc-text">Eure Hochzeit verdient den richtigen Sound für jeden Moment. Vom stilvollen Empfang über den Hochzeitstanz bis zur ausgelassenen Party begleite ich euren besonderen Tag musikalisch mit viel Gespür für Stimmung, Gäste und den perfekten Zeitpunkt für den nächsten Song.</p>
+              </div>
+            </article>
+            <article className="svc-card reveal">
+              <div className="svc-art svc-art-event">
+                <span className="svc-cat-label">Firmenevents</span>
+                <div className="eq-bars" aria-hidden="true"><span/><span/><span/><span/><span/></div>
+              </div>
+              <div className="svc-body">
+                <div className="svc-label">02 — Service</div>
+                <h3 className="svc-title">Firmenevents</h3>
+                <p className="svc-text">Die richtige Musik macht den Unterschied. Mit Gefühl für Rhythmus, einem Gespür für Menschen und der Fähigkeit, die Stimmung zu lesen, entsteht eine Atmosphäre, die zu eurem Event passt. Professionell, flexibel und immer abgestimmt auf Anlass und Publikum.</p>
               </div>
             </article>
             <article className="svc-card reveal">
@@ -270,20 +281,20 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
                 <div className="eq-bars" aria-hidden="true"><span/><span/><span/><span/><span/></div>
               </div>
               <div className="svc-body">
-                <div className="svc-label">02 — Service</div>
-                <h3 className="svc-title">Geburtstage</h3>
-                <p className="svc-text">Bei Geburtstagsfeiern sorge ich als DJ für die perfekte Stimmung. Mit aktuellen Charts, den größten Klassikern und mitreißenden Partyhits bleibt die Tanzfläche gefüllt.</p>
+                <div className="svc-label">03 — Service</div>
+                <h3 className="svc-title">Geburtstage &amp; private Feiern</h3>
+                <p className="svc-text">Bei Geburtstagen und privaten Feiern sorge ich als DJ für die passende Stimmung. Vom entspannten Start bis zur vollen Tanzfläche. Mit aktuellen Charts, zeitlosen Klassikern und mitreißenden Partyhits entsteht ein Musikmix, der zu deinen Gästen und deinem Anlass passt.</p>
               </div>
             </article>
             <article className="svc-card reveal">
-              <div className="svc-art svc-art-event">
-                <span className="svc-cat-label">Events &amp; Firmen</span>
+              <div className="svc-art svc-art-public">
+                <span className="svc-cat-label">Öffentliche Events</span>
                 <div className="eq-bars" aria-hidden="true"><span/><span/><span/><span/><span/></div>
               </div>
               <div className="svc-body">
-                <div className="svc-label">03 — Service</div>
-                <h3 className="svc-title">Events &amp; Firmen</h3>
-                <p className="svc-text">Die richtige Musik macht den Unterschied. Mit Gefühl für Rhythmus, einem Gespür für Menschen und der Fähigkeit, die Stimmung zu lesen, entsteht eine Atmosphäre.</p>
+                <div className="svc-label">04 — Service</div>
+                <h3 className="svc-title">Öffentliche Veranstaltungen</h3>
+                <p className="svc-text">Ob Stadtfest, Vereinsfeier, Ball oder öffentliche Veranstaltung — die Musik entscheidet mit über die Stimmung. Mit einem vielseitigen Mix, sicherem Gespür für das Publikum und der passenden Energie begleite ich Veranstaltungen jeder Größe und bringe Menschen auf die Tanzfläche.</p>
               </div>
             </article>
             <article className="svc-card reveal">
@@ -292,9 +303,9 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
                 <div className="eq-bars" aria-hidden="true"><span/><span/><span/><span/><span/></div>
               </div>
               <div className="svc-body">
-                <div className="svc-label">04 — Service</div>
-                <h3 className="svc-title">Club Auftritte</h3>
-                <p className="svc-text">Wenn der erste Song einsetzt, beginnt die Nacht erst richtig. Mit energiegeladenen Sets sorge ich für volle Tanzflächen und unvergessliche Nächte.</p>
+                <div className="svc-label">05 — Service</div>
+                <h3 className="svc-title">Club-Auftritte</h3>
+                <p className="svc-text">Wenn der erste Beat einsetzt, beginnt die Nacht erst richtig. Mit energiegeladenen Sets, treibenden Sounds und dem richtigen Gespür für den Dancefloor sorge ich für volle Tanzflächen und Nächte, die in Erinnerung bleiben.</p>
               </div>
             </article>
           </div>
@@ -398,6 +409,23 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
             <p className="sec-lead">Von der Hochzeit bis zur großen öffentlichen Veranstaltung — transparent und fair.</p>
           </div>
           <div className="pkg-grid">
+            <div className="pkg-card popular reveal">
+              <div className="pkg-badge">💍 Für euren großen Tag</div>
+              <h3 className="pkg-name">Hochzeitspaket</h3>
+              <p className="pkg-sub">Perfekt für Hochzeiten — von der Trauung bis zur Partynacht</p>
+              <div className="pkg-divider" />
+              <ul className="pkg-features">
+                <li>Bis zu 8 Stunden DJ Service</li>
+                <li>Professionelle Soundanlage</li>
+                <li>Stimmungsvolle Lichttechnik</li>
+                <li>Persönliches Vorgespräch &amp; Musikwunschliste</li>
+                <li>Musikalische Begleitung von Empfang bis Hochzeitstanz</li>
+                <li>Mikrofon für Reden und Ansagen</li>
+                <li>Aufbau und Abbau inklusive</li>
+              </ul>
+              <p className="pkg-note">Verlängerungsstunden sind nicht im Paketpreis enthalten.</p>
+              <a href="#kontakt" className="btn btn-primary btn-sm">Jetzt anfragen</a>
+            </div>
             <div className="pkg-card reveal">
               <h3 className="pkg-name">Basic Paket</h3>
               <p className="pkg-sub">Perfekt für Geburtstage und kleinere Events bis 100 Personen</p>
@@ -412,10 +440,9 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
               <p className="pkg-note">Verlängerungsstunden sind nicht im Paketpreis enthalten.</p>
               <a href="#kontakt" className="btn btn-ghost btn-sm">Jetzt anfragen</a>
             </div>
-            <div className="pkg-card popular reveal">
-              <div className="pkg-badge">⭐ Beliebt</div>
+            <div className="pkg-card reveal">
               <h3 className="pkg-name">Standardpaket</h3>
-              <p className="pkg-sub">Perfekt für Hochzeiten, Geburtstage, Firmenfeiern und Events bis 200 Personen</p>
+              <p className="pkg-sub">Perfekt für Geburtstage, Firmenfeiern und Events bis 200 Personen</p>
               <div className="pkg-divider" />
               <ul className="pkg-features">
                 <li>6–8 Stunden DJ Service</li>
@@ -427,11 +454,11 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
                 <li>Persönliche Musikplanung</li>
               </ul>
               <p className="pkg-note">Verlängerungsstunden sind nicht im Paketpreis enthalten.</p>
-              <a href="#kontakt" className="btn btn-primary btn-sm">Jetzt anfragen</a>
+              <a href="#kontakt" className="btn btn-ghost btn-sm">Jetzt anfragen</a>
             </div>
             <div className="pkg-card reveal">
               <h3 className="pkg-name">Premium Paket</h3>
-              <p className="pkg-sub">Perfekt für große Hochzeiten und Veranstaltungen ab 200 Personen</p>
+              <p className="pkg-sub">Perfekt für große Veranstaltungen ab 200 Personen</p>
               <div className="pkg-divider" />
               <ul className="pkg-features">
                 <li>Große professionelle Soundanlage</li>
