@@ -77,9 +77,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       "closes": "18:30",
     },
     "sameAs": [
-      "https://instagram.com/dj.raphx",
-      "https://facebook.com/djraphx",
-      "https://tiktok.com/@djraphx",
+      "https://www.instagram.com/dj_raphx/",
+      "https://www.facebook.com/raphael.taxer.7/",
+      "https://www.tiktok.com/@dj_raphx",
     ],
   };
 
