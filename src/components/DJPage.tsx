@@ -248,9 +248,9 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
       <section id="services">
         <div className="wrap">
           <div className="sec-head reveal">
-            <span className="eyebrow">Ich bin dein DJ für</span>
-            <h2 className="sec-title">Dein Event. <span className="grad-text">Meine Musik.</span></h2>
-            <p className="sec-lead">Vom Hochzeitstanz bis zur Clubnacht — maßgeschneiderte Sets für jeden Anlass.</p>
+            <span className="eyebrow">Services</span>
+            <h2 className="sec-title">Ich bin Dein DJ für <span className="grad-text">Dein Event</span></h2>
+            <p className="sec-lead">Vom Geburtstag über Firmenevents bis zur Clubnacht: Ich sorge mit individuell abgestimmten Sets für die Musik, die zu deinem Event und deinen Gästen passt.</p>
           </div>
           <div className="services-grid">
             <article className="svc-card reveal">
