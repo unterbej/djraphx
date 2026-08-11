@@ -198,48 +198,34 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
       </div>
 
       {/* FEATURES */}
-      <section id="features">
+      <section id="features" className="why-dj">
         <div className="wrap">
-          <div className="sec-head reveal">
-            <span className="eyebrow">Das zeichnet DJ RAPHX aus</span>
-            <h2 className="sec-title">Warum <span className="grad-text">RAPHX</span>?</h2>
-            <p className="sec-lead">Drei Punkte, die DJ RAPHX von einer einfachen Playlist unterscheiden.</p>
+          <div className="sec-head reveal" style={{textAlign:'center'}}>
+            <span className="eyebrow" style={{justifyContent:'center',display:'inline-flex'}}>Warum du DJ RAPHX buchen solltest?</span>
+            <h2 className="sec-title">Weil deine Feier keine <span className="grad-text">Standard-Playlist</span> verdient.</h2>
+            <p className="sec-lead" style={{margin:'0 auto'}}>Ich spiele nicht einfach Songs ab. Ich beobachte die Tanzfläche, gehe auf deine Gäste ein und passe die Musik genau an die Stimmung des Abends an.</p>
           </div>
           <div className="features-grid">
             <div className="feat-card reveal">
               <div className="feat-num">01</div>
-              <h3 className="feat-title">{c('feat1_title', 'Angepasste Musikgestaltung')}</h3>
-              <p className="feat-body">{c('feat1_body')}</p>
+              <h3 className="feat-title">Persönlich statt 08/15</h3>
+              <p className="feat-body">Vor deinem Event sprechen wir über Musik, Ablauf, Wünsche und No-Gos. So weiß ich schon vor dem ersten Song, was dir wichtig ist.</p>
             </div>
             <div className="feat-card reveal">
               <div className="feat-num">02</div>
-              <h3 className="feat-title">{c('feat2_title', 'Professionelle Planung & Ausführung')}</h3>
-              <p className="feat-body">{c('feat2_body')}</p>
+              <h3 className="feat-title">DJ &amp; Technik aus einer Hand</h3>
+              <p className="feat-body">Durch meinen technischen Background bekommst du nicht nur Musik, sondern auch zuverlässigen Sound, Licht und einen professionellen Aufbau.</p>
             </div>
             <div className="feat-card reveal">
               <div className="feat-num">03</div>
-              <h3 className="feat-title">{c('feat3_title', 'Unvergessliche Abende & echte Emotionen')}</h3>
-              <p className="feat-body">{c('feat3_body')}</p>
+              <h3 className="feat-title">Entspannt feiern</h3>
+              <p className="feat-body">Klare Absprachen, zuverlässige Vorbereitung und ein DJ, der den Abend im Blick behält, damit du deine eigene Feier genießen kannst.</p>
             </div>
           </div>
+          <p className="why-text reveal" style={{textAlign:'center',margin:'36px auto 0'}}>Am Ende zählt nur eines: Eine volle Tanzfläche, glückliche Gäste und ein Abend, an den man sich gerne erinnert.</p>
           <div className="feat-ctas reveal">
             <a href="#kontakt" className="btn btn-primary">Jetzt Termin vereinbaren <span className="arrow">→</span></a>
             <a href="https://wa.me/436605459207" className="btn btn-wa" target="_blank" rel="noopener">Über WhatsApp anfragen</a>
-          </div>
-        </div>
-      </section>
-
-      {/* WHY DJ */}
-      <section className="why-dj" id="warum">
-        <div className="wrap">
-          <div className="why-inner">
-            <span className="eyebrow reveal" style={{justifyContent:'center',display:'inline-flex',marginBottom:'16px'}}>Warum du einen DJ brauchst</span>
-            <h2 className="disp big-quote reveal">{c('why_quote', '„Ohne die richtige Musik ist eine Veranstaltung einfach nicht das Wahre."')}</h2>
-            <p className="why-text reveal">{c('why_text1')}</p>
-            <p className="why-text reveal">{c('why_text2')}</p>
-            <div className="reveal">
-              <a href="#kontakt" className="btn btn-primary">Ja, das ist das Richtige für mich! <span className="arrow">→</span></a>
-            </div>
           </div>
         </div>
       </section>
