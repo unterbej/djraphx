@@ -321,7 +321,7 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
         <div className="wrap">
           <div className="about-grid">
             <div className="about-img reveal">
-              <Image src="/portrait-about.jpg" alt="DJ Raphael Taxer – RAPHX" fill style={{objectFit:'cover',objectPosition:'center top'}} />
+              <Image src="/portrait-about.png" alt="DJ Raphael Taxer – RAPHX" fill style={{objectFit:'cover',objectPosition:'center top'}} />
               <span className="about-tag">RAPHX · 2026</span>
             </div>
             <div className="about-body reveal">
