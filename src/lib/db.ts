@@ -75,6 +75,128 @@ export async function ensureInit(): Promise<void> {
     // column already exists
   }
 
+  await db.execute(`CREATE TABLE IF NOT EXISTS blocks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    page TEXT NOT NULL DEFAULT 'home',
+    type TEXT NOT NULL,
+    sort_order INTEGER NOT NULL DEFAULT 0,
+    visible INTEGER NOT NULL DEFAULT 1,
+    locked INTEGER NOT NULL DEFAULT 0,
+    config TEXT NOT NULL DEFAULT '{}',
+    created_at TEXT DEFAULT (datetime('now')),
+    updated_at TEXT DEFAULT (datetime('now'))
+  )`);
+
+  await db.execute(`CREATE TABLE IF NOT EXISTS media (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    filename TEXT NOT NULL UNIQUE,
+    width INTEGER,
+    height INTEGER,
+    bytes INTEGER,
+    alt TEXT DEFAULT '',
+    created_at TEXT DEFAULT (datetime('now')),
+    data BLOB NOT NULL
+  )`);
+
+  // Seed the pricing-cards block reproducing today's hardcoded packages, once.
+  const existingBlocks = await db.execute(`SELECT COUNT(*) as cnt FROM blocks WHERE page = 'home' AND type = 'pricing-cards'`);
+  if ((existingBlocks.rows[0][0] as number) === 0) {
+    const pricingConfig = {
+      eyebrow: 'Meine DJ-Angebote',
+      title: 'Das passende Paket für dich',
+      lead: 'Von der Hochzeit bis zur großen öffentlichen Veranstaltung — transparent und fair.',
+      packages: [
+        {
+          badge: '💍 Für euren großen Tag',
+          name: 'Hochzeitspaket',
+          subtitle: 'Perfekt für Hochzeiten — von der Trauung bis zur Partynacht',
+          features: [
+            'Bis zu 8 Stunden DJ Service',
+            'Professionelle Soundanlage',
+            'Stimmungsvolle Lichttechnik',
+            'Persönliches Vorgespräch & Musikwunschliste',
+            'Musikalische Begleitung von Empfang bis Hochzeitstanz',
+            'Mikrofon für Reden und Ansagen',
+            'Aufbau und Abbau inklusive',
+          ],
+          note: 'Verlängerungsstunden sind nicht im Paketpreis enthalten.',
+          popular: true,
+          ctaLabel: 'Jetzt anfragen',
+        },
+        {
+          badge: '',
+          name: 'Basic Paket',
+          subtitle: 'Perfekt für Geburtstage und kleinere Events bis 100 Personen',
+          features: [
+            '4–6 Stunden DJ Service',
+            'Professionelle Soundanlage',
+            'Basic Lichttechnik',
+            'Vorgespräch & Musikwünsche',
+            'Aufbau und Abbau inklusive',
+          ],
+          note: 'Verlängerungsstunden sind nicht im Paketpreis enthalten.',
+          popular: false,
+          ctaLabel: 'Jetzt anfragen',
+        },
+        {
+          badge: '',
+          name: 'Standardpaket',
+          subtitle: 'Perfekt für Geburtstage, Firmenfeiern und Events bis 200 Personen',
+          features: [
+            '6–8 Stunden DJ Service',
+            'Professionelle Soundanlage',
+            'Moderne Lichttechnik',
+            'Vorgespräch & Musikwünsche',
+            'Aufbau und Abbau inklusive',
+            'Mikrofon für Reden und Ansagen',
+            'Persönliche Musikplanung',
+          ],
+          note: 'Verlängerungsstunden sind nicht im Paketpreis enthalten.',
+          popular: false,
+          ctaLabel: 'Jetzt anfragen',
+        },
+        {
+          badge: '',
+          name: 'Premium Paket',
+          subtitle: 'Perfekt für große Veranstaltungen ab 200 Personen',
+          features: [
+            'Große professionelle Soundanlage',
+            'Professionelle Lichttechnik',
+            'Zusammenarbeit mit Showtechnik-Partnern',
+            'Vorgespräch & Musikwünsche',
+            'Aufbau und Abbau inklusive',
+            'Funkmikrofone',
+            'Persönliche Musikplanung',
+            'Nebelmaschine & Showeffekte',
+          ],
+          note: '',
+          popular: false,
+          ctaLabel: 'Jetzt anfragen',
+        },
+        {
+          badge: '',
+          name: 'Club Paket',
+          subtitle: 'Für Club-Auftritte und Nacht-Events',
+          features: [
+            'DJ-Service nach Anfrage',
+            'Open Format',
+            'Eigene Set Vorbereitung',
+            'Exklusive Übergänge & Mashups',
+            'Energieaufbau während des Abends',
+            'Event Promotion',
+          ],
+          note: 'Keine eigene Technik. Nutzung der vorhandenen Clubtechnik.',
+          popular: false,
+          ctaLabel: 'Jetzt anfragen',
+        },
+      ],
+    };
+    await db.execute({
+      sql: `INSERT INTO blocks (page, type, sort_order, visible, locked, config) VALUES ('home', 'pricing-cards', 0, 1, 0, ?)`,
+      args: [JSON.stringify(pricingConfig)],
+    });
+  }
+
   await db.execute(`CREATE TABLE IF NOT EXISTS reviews (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     text TEXT NOT NULL,

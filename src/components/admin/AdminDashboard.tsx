@@ -7,8 +7,9 @@ import AdminCalendar from './AdminCalendar';
 import AdminCMS from './AdminCMS';
 import AdminReviews from './AdminReviews';
 import AdminGallery from './AdminGallery';
+import AdminPackagesSimple from './AdminPackagesSimple';
 
-type Tab = 'bookings' | 'calendar' | 'reviews' | 'gallery' | 'cms';
+type Tab = 'bookings' | 'calendar' | 'reviews' | 'gallery' | 'cms' | 'packages';
 
 const IconBookings = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -50,6 +51,13 @@ const IconCMS = () => (
   </svg>
 );
 
+const IconPackages = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20.59 13.41 11 3.83A2 2 0 0 0 9.59 3.24H4a1 1 0 0 0-1 1v5.59a2 2 0 0 0 .59 1.41l9.58 9.58a2 2 0 0 0 2.83 0l4.59-4.59a2 2 0 0 0 0-2.83z"/>
+    <circle cx="7.5" cy="7.5" r="1.5"/>
+  </svg>
+);
+
 const IconLogout = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
@@ -71,6 +79,7 @@ const tabs: { id: Tab; label: string; Icon: React.FC }[] = [
   { id: 'calendar', label: 'Kalender',  Icon: IconCalendar },
   { id: 'reviews',  label: 'Bewertungen', Icon: IconReviews },
   { id: 'gallery',  label: 'Galerie',   Icon: IconGallery },
+  { id: 'packages', label: 'Pakete',    Icon: IconPackages },
   { id: 'cms',      label: 'Inhalte',   Icon: IconCMS },
 ];
 
@@ -169,6 +178,7 @@ export default function AdminDashboard() {
         {tab === 'calendar' && <AdminCalendar />}
         {tab === 'reviews'  && <AdminReviews />}
         {tab === 'gallery'  && <AdminGallery />}
+        {tab === 'packages' && <AdminPackagesSimple />}
         {tab === 'cms'      && <AdminCMS />}
       </main>
     </div>

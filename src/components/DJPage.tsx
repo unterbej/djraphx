@@ -6,12 +6,14 @@ import BookingForm from './BookingForm';
 import CalendarSection from './CalendarSection';
 import ReviewSlider from './ReviewSlider';
 import GallerySlider from './GallerySlider';
+import BlockRenderer from './blocks/BlockRenderer';
+import type { BlockRow } from '@/lib/blocks/data';
 
 interface CmsContent {
   [key: string]: string;
 }
 
-export default function DJPage({ cms }: { cms: CmsContent }) {
+export default function DJPage({ cms, blocks }: { cms: CmsContent; blocks: BlockRow[] }) {
   const navRef = useRef<HTMLElement>(null);
   const burgerRef = useRef<HTMLButtonElement>(null);
   const [navOpen, setNavOpen] = useState(false);
@@ -386,96 +388,8 @@ export default function DJPage({ cms }: { cms: CmsContent }) {
         </div>
       </section>
 
-      {/* PACKAGES */}
-      <section id="pakete">
-        <div className="wrap">
-          <div className="sec-head reveal">
-            <span className="eyebrow">Meine DJ-Angebote</span>
-            <h2 className="sec-title">Das passende <span className="grad-text">Paket</span> für dich</h2>
-            <p className="sec-lead">Von der Hochzeit bis zur großen öffentlichen Veranstaltung — transparent und fair.</p>
-          </div>
-          <div className="pkg-grid">
-            <div className="pkg-card popular reveal">
-              <div className="pkg-badge">💍 Für euren großen Tag</div>
-              <h3 className="pkg-name">Hochzeitspaket</h3>
-              <p className="pkg-sub">Perfekt für Hochzeiten — von der Trauung bis zur Partynacht</p>
-              <div className="pkg-divider" />
-              <ul className="pkg-features">
-                <li>Bis zu 8 Stunden DJ Service</li>
-                <li>Professionelle Soundanlage</li>
-                <li>Stimmungsvolle Lichttechnik</li>
-                <li>Persönliches Vorgespräch &amp; Musikwunschliste</li>
-                <li>Musikalische Begleitung von Empfang bis Hochzeitstanz</li>
-                <li>Mikrofon für Reden und Ansagen</li>
-                <li>Aufbau und Abbau inklusive</li>
-              </ul>
-              <p className="pkg-note">Verlängerungsstunden sind nicht im Paketpreis enthalten.</p>
-              <a href="#kontakt" className="btn btn-primary btn-sm">Jetzt anfragen</a>
-            </div>
-            <div className="pkg-card reveal">
-              <h3 className="pkg-name">Basic Paket</h3>
-              <p className="pkg-sub">Perfekt für Geburtstage und kleinere Events bis 100 Personen</p>
-              <div className="pkg-divider" />
-              <ul className="pkg-features">
-                <li>4–6 Stunden DJ Service</li>
-                <li>Professionelle Soundanlage</li>
-                <li>Basic Lichttechnik</li>
-                <li>Vorgespräch &amp; Musikwünsche</li>
-                <li>Aufbau und Abbau inklusive</li>
-              </ul>
-              <p className="pkg-note">Verlängerungsstunden sind nicht im Paketpreis enthalten.</p>
-              <a href="#kontakt" className="btn btn-ghost btn-sm">Jetzt anfragen</a>
-            </div>
-            <div className="pkg-card reveal">
-              <h3 className="pkg-name">Standardpaket</h3>
-              <p className="pkg-sub">Perfekt für Geburtstage, Firmenfeiern und Events bis 200 Personen</p>
-              <div className="pkg-divider" />
-              <ul className="pkg-features">
-                <li>6–8 Stunden DJ Service</li>
-                <li>Professionelle Soundanlage</li>
-                <li>Moderne Lichttechnik</li>
-                <li>Vorgespräch &amp; Musikwünsche</li>
-                <li>Aufbau und Abbau inklusive</li>
-                <li>Mikrofon für Reden und Ansagen</li>
-                <li>Persönliche Musikplanung</li>
-              </ul>
-              <p className="pkg-note">Verlängerungsstunden sind nicht im Paketpreis enthalten.</p>
-              <a href="#kontakt" className="btn btn-ghost btn-sm">Jetzt anfragen</a>
-            </div>
-            <div className="pkg-card reveal">
-              <h3 className="pkg-name">Premium Paket</h3>
-              <p className="pkg-sub">Perfekt für große Veranstaltungen ab 200 Personen</p>
-              <div className="pkg-divider" />
-              <ul className="pkg-features">
-                <li>Große professionelle Soundanlage</li>
-                <li>Professionelle Lichttechnik</li>
-                <li>Zusammenarbeit mit Showtechnik-Partnern</li>
-                <li>Vorgespräch &amp; Musikwünsche</li>
-                <li>Aufbau und Abbau inklusive</li>
-                <li>Funkmikrofone</li>
-                <li>Persönliche Musikplanung</li>
-                <li>Nebelmaschine &amp; Showeffekte</li>
-              </ul>
-              <a href="#kontakt" className="btn btn-ghost btn-sm">Jetzt anfragen</a>
-            </div>
-            <div className="pkg-card reveal">
-              <h3 className="pkg-name">Club Paket</h3>
-              <p className="pkg-sub">Für Club-Auftritte und Nacht-Events</p>
-              <div className="pkg-divider" />
-              <ul className="pkg-features">
-                <li>DJ-Service nach Anfrage</li>
-                <li>Open Format</li>
-                <li>Eigene Set Vorbereitung</li>
-                <li>Exklusive Übergänge &amp; Mashups</li>
-                <li>Energieaufbau während des Abends</li>
-                <li>Event Promotion</li>
-              </ul>
-              <p className="pkg-note">Keine eigene Technik. Nutzung der vorhandenen Clubtechnik.</p>
-              <a href="#kontakt" className="btn btn-ghost btn-sm">Jetzt anfragen</a>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* PACKAGES (block-driven) */}
+      <BlockRenderer blocks={blocks} />
 
       {/* PROCESS */}
       <section id="buchung" style={{paddingTop:0}}>
