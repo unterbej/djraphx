@@ -1,24 +1,24 @@
-import Link from 'next/link';
 import { PACKAGES } from '@/lib/v2/site';
+import CtaLink from './CtaLink';
+import Reveal from './Reveal';
+import TiltCard from './TiltCard';
 
-export default function PackageGrid({ only, eventType }: { only?: string[]; eventType: string }) {
+export default function PackageGrid({ only, eventType, ort }: { only?: string[]; eventType: string; ort: string }) {
   const list = only ? PACKAGES.filter((p) => only.includes(p.name)) : PACKAGES;
-  const q = eventType ? `?eventtyp=${encodeURIComponent(eventType)}` : '';
   return (
-    <div className="v2-pkgs">
+    <Reveal as="div" stagger variant="up" className={`v2-pkgs n${list.length}`}>
       {list.map((p) => (
-        <article key={p.name} className={`v2-pkg${p.popular ? ' popular' : ''}`}>
-          <h3>{p.name}</h3>
-          <p className="v2-pkg-sub">{p.subtitle}</p>
-          <ul>
-            {p.features.map((f) => <li key={f}>{f}</li>)}
-          </ul>
-          {p.note && <p className="v2-pkg-note">{p.note}</p>}
-          <Link className="btn btn-ghost btn-sm" href={`/v2/kontakt${q}${q ? '&' : '?'}paket=${encodeURIComponent(p.name)}#anfrage`}>
-            {p.name} anfragen
-          </Link>
-        </article>
+        <TiltCard key={p.slug} className={`v2-pkg${p.popular ? ' hot' : ''}`}>
+          <article>
+            {p.popular && <p className="v2-pkg-flag">Für den großen Tag</p>}
+            <h3>{p.name}</h3>
+            <p className="v2-pkg-sub">{p.subtitle}</p>
+            <ul>{p.features.map((f) => <li key={f}>{f}</li>)}</ul>
+            {p.note && <p className="v2-pkg-note">{p.note}</p>}
+            <CtaLink paket={p.slug} eventType={eventType} ort={ort} variant={p.popular ? 'primary' : 'ghost'} magnetic={false}>{p.name} anfragen</CtaLink>
+          </article>
+        </TiltCard>
       ))}
-    </div>
+    </Reveal>
   );
 }

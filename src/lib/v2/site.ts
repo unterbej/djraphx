@@ -29,6 +29,7 @@ export const href = (slug: string) => `/v2${slug ? `/${slug}` : ''}`;
 
 // Pakete: 1:1 von der bestehenden Seite (Block "pricing-cards"). Keine Preise – auf der Seite stehen keine.
 export interface Pkg {
+  slug: string;
   name: string;
   subtitle: string;
   features: string[];
@@ -38,6 +39,7 @@ export interface Pkg {
 
 export const PACKAGES: Pkg[] = [
   {
+    slug: 'hochzeit',
     name: 'Hochzeitspaket',
     subtitle: 'Perfekt für Hochzeiten — von der Trauung bis zur Partynacht',
     features: [
@@ -53,6 +55,7 @@ export const PACKAGES: Pkg[] = [
     popular: true,
   },
   {
+    slug: 'basic',
     name: 'Basic Paket',
     subtitle: 'Perfekt für Geburtstage und kleinere Events bis 100 Personen',
     features: [
@@ -65,6 +68,7 @@ export const PACKAGES: Pkg[] = [
     note: 'Verlängerungsstunden sind nicht im Paketpreis enthalten.',
   },
   {
+    slug: 'standard',
     name: 'Standardpaket',
     subtitle: 'Perfekt für Geburtstage, Firmenfeiern und Events bis 200 Personen',
     features: [
@@ -79,6 +83,7 @@ export const PACKAGES: Pkg[] = [
     note: 'Verlängerungsstunden sind nicht im Paketpreis enthalten.',
   },
   {
+    slug: 'premium',
     name: 'Premium Paket',
     subtitle: 'Perfekt für große Veranstaltungen ab 200 Personen',
     features: [
@@ -94,6 +99,7 @@ export const PACKAGES: Pkg[] = [
     note: '',
   },
   {
+    slug: 'club',
     name: 'Club Paket',
     subtitle: 'Für Club-Auftritte und Nacht-Events',
     features: [
@@ -108,13 +114,30 @@ export const PACKAGES: Pkg[] = [
   },
 ];
 
+// Alte Website: Impressum/AGB/Datenschutz existieren dort nur als Modals im Footer der Startseite.
+export const LEGAL_URL = 'https://www.djraphx.at/#kontakt';
+export const OLD_SITE = 'https://www.djraphx.at/';
+
 export const NAV = [
   { slug: 'hochzeits-dj-kaernten', label: 'Hochzeit' },
-  { slug: 'firmenfeier-dj-kaernten', label: 'Firmenfeier' },
-  { slug: 'geburtstag-dj-kaernten', label: 'Geburtstag' },
   { slug: 'club-dj-kaernten', label: 'Club' },
   { slug: 'preise', label: 'Preise' },
-  { slug: 'faq', label: 'FAQ' },
   { slug: 'ueber-mich', label: 'Über mich' },
-  { slug: 'kontakt', label: 'Kontakt' },
+  { slug: 'faq', label: 'FAQ' },
+];
+
+export const MENU_MORE = [
+  { slug: 'firmenfeier-dj-kaernten', label: 'Firmenfeier' },
+  { slug: 'geburtstag-dj-kaernten', label: 'Geburtstag' },
+  { slug: 'oeffentliche-veranstaltungen-dj-kaernten', label: 'Ball & Stadtfest' },
+  { slug: 'dj-villach', label: 'DJ Villach' },
+  { slug: 'dj-klagenfurt', label: 'DJ Klagenfurt' },
+  { slug: 'dj-spittal-an-der-drau', label: 'DJ Spittal' },
+];
+
+export const PARTNERS = [
+  { href: 'https://www.melaniemaurerfotografie.at', name: 'Melanie Maurer', role: 'Business- & Familienfotografin', logo: '/logos/MelanieMaurer.jpeg' },
+  { href: 'https://www.dobesch.at', name: 'Dobesch Showtechnik', role: 'Veranstaltungstechniker & Eventplaner', logo: '/logos/logo_dobesch_showtechnik.png' },
+  { href: 'https://www.linktr.ee/UnderlinedBrass', name: 'Underlined Brass', role: 'Blasmusik-Band', logo: '/logos/logo_underlinedbrass-removebg-preview.png' },
+  { href: 'https://www.dein-finanzcoach.at', name: 'Dein Finanzcoach', role: 'Versicherungspartner', logo: '/logos/Logo_finanzCouch.png' },
 ];

@@ -1,6 +1,6 @@
 import { CONTACT } from '@/lib/v2/site';
 
-// Reines CSS/HTML – nur auf Mobile sichtbar, kein Client-JS.
+// Reines HTML/CSS – nur auf Mobile sichtbar, kein Client-JS.
 export default function StickyCta() {
   return (
     <div className="v2-sticky" role="group" aria-label="Schnellkontakt">

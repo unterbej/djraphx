@@ -6,11 +6,7 @@ export default function Breadcrumbs({ items }: { items: { name: string; href: st
       <ol>
         {items.map((it, i) => (
           <li key={it.href}>
-            {i < items.length - 1 ? (
-              <Link href={it.href}>{it.name}</Link>
-            ) : (
-              <span aria-current="page">{it.name}</span>
-            )}
+            {i < items.length - 1 ? <Link href={it.href}>{it.name}</Link> : <span aria-current="page">{it.name}</span>}
           </li>
         ))}
       </ol>
